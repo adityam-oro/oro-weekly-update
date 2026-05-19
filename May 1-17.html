@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORO Weekly Business Update -- Week 20 | May 1-17, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+<style>
+  :root {
+    --gold-mid: #D4A843;
+    --gold-light: #F0C96A;
+    --gold-dark: #8B6508;
+    --ink: #1C1C1E;
+    --ink-soft: #2C2C2E;
+    --green: #2D6A4F;
+    --green-bg: #EAF4EE;
+    --amber: #E07B00;
+    --amber-bg: #FFF3E0;
+    --red: #9B2335;
+    --red-bg: #FDECEA;
+    --surface: #FAFAF8;
+    --surface-2: #F2F1EE;
+    --navy: #1A2B4A;
+    --navy-alt: #243554;
+    --grey: #8C8C8E;
+    --grey-light: #E8E8E6;
+    --blue: #1A3F6F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  /* ===== COVER ===== */
+  .cover {
+    background: var(--ink);
+    padding: 60px 48px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(212,168,67,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 200px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(212,168,67,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cover-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 36px;
+  }
+  .oro-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    color: var(--gold-mid);
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  .oro-logo span {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: rgba(212,168,67,0.6);
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+  .week-badge {
+    background: var(--gold-mid);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border-radius: 20px;
+  }
+  .cover-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .cover-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.06em;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(212,168,67,0.2);
+  }
+  .meta-item { }
+  .meta-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 4px;
+  }
+  .meta-val {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold-mid);
+  }
+  .meta-val small {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    margin-left: 4px;
+  }
+
+  /* ===== LAYOUT ===== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px 60px;
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .section {
+    margin-top: 48px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--grey-light);
+  }
+  .section-icon {
+    width: 36px; height: 36px;
+    background: var(--navy);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .section-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  /* ===== KPI STRIP ===== */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .kpi-card {
+    background: #fff;
+    border: 1px solid var(--grey-light);
+    border-radius: 12px;
+    padding: 16px 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 12px 12px 0 0;
+  }
+  .kpi-card.green::before { background: var(--green); }
+  .kpi-card.amber::before { background: var(--amber); }
+  .kpi-card.red::before { background: var(--red); }
+  .kpi-card.grey::before { background: var(--grey); }
+
+  .kpi-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .kpi-sub {
+    font-size: 11px;
+    color: var(--grey);
+    margin-bottom: 8px;
+  }
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .pill.green { background: var(--green-bg); color: var(--green); }
+  .pill.amber { background: var(--amber-bg); color: var(--amber); }
+  .pill.red { background: var(--red-bg); color: var(--red); }
+  .pill.grey { background: var(--grey-light); color: var(--grey); }
+
+  /* ===== SUMMARY BOXES ===== */
+  .summary-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .summary-box {
+    border-radius: 12px;
+    padding: 20px 22px;
+    border-left: 4px solid;
+  }
+  .summary-box.worked {
+    background: var(--green-bg);
+    border-color: var(--green);
+  }
+  .summary-box.improve {
+    background: var(--amber-bg);
+    border-color: var(--amber);
+  }
+  .summary-box-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .summary-box.worked .summary-box-title { color: var(--green); }
+  .summary-box.improve .summary-box-title { color: var(--amber); }
+  .summary-box ul { list-style: none; }
+  .summary-box ul li {
+    font-size: 13px;
+    color: var(--ink);
+    padding: 4px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.45;
+  }
+  .summary-box ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+  }
+  .summary-box.worked ul li::before { background: var(--green); }
+  .summary-box.improve ul li::before { background: var(--amber); }
+
+  /* ===== ACHIEVEMENT TABLE ===== */
+  .ach-table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--grey-light);
+    margin-bottom: 20px;
+  }
+  .ach-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    min-width: 900px;
+  }
+  .ach-table thead tr {
+    background: var(--navy);
+    color: #fff;
+  }
+  .ach-table thead th {
+    padding: 11px 12px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .ach-table thead th:first-child { text-align: left; min-width: 160px; }
+  .ach-table thead th.city-group {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--navy-alt);
+    border-left: 1px solid rgba(255,255,255,0.1);
+  }
+  .ach-table tbody tr:nth-child(even) { background: var(--surface-2); }
+  .ach-table tbody tr:nth-child(odd) { background: #fff; }
+  .ach-table tbody tr.total-row {
+    background: var(--navy) !important;
+    color: #fff;
+    font-weight: 600;
+  }
+  .ach-table tbody td {
+    padding: 9px 12px;
+    text-align: right;
+    border-bottom: 1px solid var(--grey-light);
+    white-space: nowrap;
+  }
+  .ach-table tbody td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .ach-table tbody tr.total-row td { border-bottom: none; color: #fff; }
+  .ach-table tbody tr.total-row td:first-child { color: #fff; }
+
+  /* ===== CHARTS ===== */
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .chart-card {
+    background: #fff;
+    border: 1px solid var(--grey-light);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .chart-card.full { grid-column: 1/-1; }
+  .chart-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 16px;
+  }
+  .chart-wrap {
+    position: relative;
+    height: 220px;
+  }
+  .chart-wrap.tall { height: 280px; }
+
+  /* ===== INITIATIVES ===== */
+  .bot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .bot-stat {
+    background: #fff;
+    border: 1px solid var(--grey-light);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .bot-stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 6px;
+  }
+  .bot-stat-val {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .bot-stat-sub {
+    font-size: 11px;
+    color: var(--grey);
+    margin-top: 2px;
+  }
+
+  /* ===== SUPPORT TABLE ===== */
+  .support-table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--grey-light);
+    margin-bottom: 20px;
+  }
+  .support-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .support-table thead tr { background: var(--navy); color: #fff; }
+  .support-table thead th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .support-table thead th:not(:first-child) { text-align: right; }
+  .support-table tbody tr:nth-child(even) { background: var(--surface-2); }
+  .support-table tbody tr:nth-child(odd) { background: #fff; }
+  .support-table tbody tr.total-row { background: var(--navy) !important; color: #fff; font-weight: 600; }
+  .support-table tbody td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--grey-light);
+    white-space: nowrap;
+  }
+  .support-table tbody td:not(:first-child) { text-align: right; }
+  .support-table tbody tr.total-row td { border-bottom: none; color: #fff; }
+
+  /* ===== PEOPLE TABLE ===== */
+  .people-table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--grey-light);
+    margin-bottom: 20px;
+  }
+  .people-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .people-table thead tr { background: var(--navy); color: #fff; }
+  .people-table thead th {
+    padding: 10px 14px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 11px;
+  }
+  .people-table thead th:first-child { text-align: left; }
+  .people-table tbody tr:nth-child(even) { background: var(--surface-2); }
+  .people-table tbody tr:nth-child(odd) { background: #fff; }
+  .people-table tbody tr.total-row { background: var(--navy) !important; color: #fff; font-weight: 600; }
+  .people-table tbody td {
+    padding: 9px 14px;
+    text-align: right;
+    border-bottom: 1px solid var(--grey-light);
+  }
+  .people-table tbody td:first-child { text-align: left; }
+  .people-table tbody tr.total-row td { border-bottom: none; color: #fff; }
+
+  /* ===== EXPANSION ===== */
+  .expansion-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .city-card {
+    background: #fff;
+    border: 1px solid var(--grey-light);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .city-card-header {
+    background: var(--navy);
+    color: #fff;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .city-card-body { padding: 12px 14px; }
+  .territory-name {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
+  .territory-name:first-child { margin-top: 0; }
+  .co-list { list-style: none; }
+  .co-list li {
+    font-size: 12px;
+    color: var(--ink);
+    padding: 2px 0;
+    padding-left: 10px;
+    position: relative;
+  }
+  .co-list li::before {
+    content: '';
+    position: absolute; left: 0; top: 7px;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold-mid);
+  }
+  .co-list li.yet {
+    color: var(--grey);
+    font-style: italic;
+  }
+
+  /* ===== AUDIT ===== */
+  .audit-table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--grey-light);
+    margin-bottom: 20px;
+  }
+  .audit-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .audit-table thead tr { background: var(--navy); color: #fff; }
+  .audit-table thead th {
+    padding: 10px 14px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .audit-table thead th:first-child { text-align: left; min-width: 180px; }
+  .audit-table tbody tr:nth-child(even) { background: var(--surface-2); }
+  .audit-table tbody tr:nth-child(odd) { background: #fff; }
+  .audit-table tbody tr.total-row { background: var(--navy) !important; color: #fff; font-weight: 600; }
+  .audit-table tbody td {
+    padding: 9px 14px;
+    text-align: right;
+    border-bottom: 1px solid var(--grey-light);
+    white-space: nowrap;
+  }
+  .audit-table tbody td:first-child { text-align: left; }
+  .audit-table tbody tr.total-row td { border-bottom: none; color: #fff; }
+  .audit-table .rate-up { color: var(--green); font-weight: 600; }
+  .audit-table .rate-dn { color: var(--red); font-weight: 600; }
+
+  .audit-actions-table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--grey-light);
+  }
+  .audit-actions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .audit-actions-table thead tr { background: var(--navy); color: #fff; }
+  .audit-actions-table thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+  }
+  .audit-actions-table tbody tr:nth-child(even) { background: var(--surface-2); }
+  .audit-actions-table tbody tr:nth-child(odd) { background: #fff; }
+  .audit-actions-table tbody td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--grey-light);
+    font-size: 12.5px;
+    vertical-align: top;
+  }
+  .audit-actions-table tbody tr:last-child td { border-bottom: none; }
+  .cat-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .cat-badge.internal { background: #E8F0FB; color: var(--blue); }
+  .cat-badge.training { background: #EDE7F6; color: #6A1B9A; }
+  .cat-badge.auction { background: var(--amber-bg); color: var(--amber); }
+  .cat-badge.ops { background: var(--green-bg); color: var(--green); }
+  .cat-badge.gbs { background: #F3E5F5; color: #7B1FA2; }
+  .cat-badge.private { background: #FBE9E7; color: #BF360C; }
+
+  /* ===== SUBSECTION ===== */
+  .subsection-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 20px 0 12px;
+    padding-left: 10px;
+    border-left: 3px solid var(--gold-mid);
+  }
+  .info-note {
+    font-size: 12px;
+    color: var(--grey);
+    font-style: italic;
+    margin-top: 8px;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    padding: 20px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    margin-top: 60px;
+  }
+  .footer span { color: var(--gold-mid); }
+</style>
+</head>
+<body>
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="oro-logo">ORO<span>Gold Lending</span></div>
+    <div class="week-badge">Week 20 &nbsp;|&nbsp; Apr Update</div>
+  </div>
+  <div class="cover-title">Weekly Business<br>Update</div>
+  <div class="cover-subtitle">May 1 -- 17, 2026</div>
+  <div class="cover-meta">
+    <div class="meta-item">
+      <div class="meta-label">ND Disbursals</div>
+      <div class="meta-val">465 <small># loans</small></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">ND Value</div>
+      <div class="meta-val">&#8377;25.5 <small>Cr</small></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">AUM</div>
+      <div class="meta-val">&#8377;1,202.7 <small>Cr</small></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">New Customers</div>
+      <div class="meta-val">445</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Cities Active</div>
+      <div class="meta-val">8</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===== SECTION 1: BUSINESS PERFORMANCE ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">&#128200;</div>
+    <div>
+      <div class="section-num">Section 01</div>
+      <div class="section-title">Business Performance Overview</div>
+    </div>
+  </div>
+
+  <!-- KPI Strip -->
+  <div class="kpi-strip">
+    <div class="kpi-card amber">
+      <div class="kpi-label">Total Appts (Consol)</div>
+      <div class="kpi-value">778</div>
+      <div class="kpi-sub">Target: 1,429</div>
+      <span class="pill amber">54.44%</span>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">Total DVs (Consol)</div>
+      <div class="kpi-value">129</div>
+      <div class="kpi-sub">Target: 271</div>
+      <span class="pill red">47.60%</span>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">ND Volume (Consol)</div>
+      <div class="kpi-value">903</div>
+      <div class="kpi-sub">Target: 1,939</div>
+      <span class="pill red">46.57%</span>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">ND Value (Consol)</div>
+      <div class="kpi-value">&#8377;49.0 Cr</div>
+      <div class="kpi-sub">Target: &#8377;110.2 Cr</div>
+      <span class="pill red">44.50%</span>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">New Customers</div>
+      <div class="kpi-value">445</div>
+      <div class="kpi-sub">Target: 1,056</div>
+      <span class="pill red">42.14%</span>
+    </div>
+  </div>
+
+  <!-- Week-on-Week Charts -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">ND Value -- Week on Week (&#8377; Cr)</div>
+      <div class="chart-wrap">
+        <canvas id="ndValueChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">ND Volume -- Week on Week (# Loans)</div>
+      <div class="chart-wrap">
+        <canvas id="ndVolChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Loan Mix -- New Disbursals (&#8377; Cr)</div>
+      <div class="chart-wrap">
+        <canvas id="loanMixChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">AUM Trend -- Week on Week (&#8377; Cr)</div>
+      <div class="chart-wrap">
+        <canvas id="aumChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card full">
+      <div class="chart-title">City-wise ND Value -- Week on Week (&#8377; Cr)</div>
+      <div class="chart-wrap tall">
+        <canvas id="cityNDChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Achievement Table -->
+  <div class="subsection-title">April 2026 -- Target vs Achievement by City</div>
+  <div class="ach-table-wrap">
+    <table class="ach-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="city-group" colspan="3">Chennai</th>
+          <th class="city-group" colspan="3">Bengaluru</th>
+          <th class="city-group" colspan="3">Hyderabad</th>
+          <th class="city-group" colspan="3">Pune</th>
+          <th class="city-group" colspan="3">Vijayawada</th>
+          <th class="city-group" colspan="3">ORO Consol</th>
+        </tr>
+        <tr>
+          <th>Metric</th>
+          <th>Target</th><th>Ach</th><th>%</th>
+          <th>Target</th><th>Ach</th><th>%</th>
+          <th>Target</th><th>Ach</th><th>%</th>
+          <th>Target</th><th>Ach</th><th>%</th>
+          <th>Target</th><th>Ach</th><th>%</th>
+          <th>Target</th><th>Ach</th><th>%</th>
+        </tr>
+      </thead>
+      <tbody id="achTableBody"></tbody>
+    </table>
+  </div>
+  <p class="info-note">Note: Guntur, Warangal and Karimnagar data omitted from city columns for space; included in ORO Consolidated totals.</p>
+
+  <!-- Summary boxes -->
+  <div class="summary-row">
+    <div class="summary-box worked">
+      <div class="summary-box-title">&#10003; What Worked Well</div>
+      <ul>
+        <li>Cx Met % consolidated at 82.3% achievement -- well above 80% threshold</li>
+        <li>DV-A2NU% consolidated at 82.7% -- strong conversion from DV to new units</li>
+        <li>Week 20 saw strongest ND performance of the month: 465 loans at &#8377;25.5 Cr (WoW: +27.2% vol, +24.3% val)</li>
+        <li>Pune DV-A2NU% at 121.3% -- above target</li>
+        <li>Vijayawada DV-A2NU% at 113.2% -- above target</li>
+        <li>AUM steady at &#8377;1,202.7 Cr with consistent net addition across all 4 weeks</li>
+      </ul>
+    </div>
+    <div class="summary-box improve">
+      <div class="summary-box-title">&#9651; Needs Improvement</div>
+      <ul>
+        <li>Consolidated ND Volume at 46.57% -- well below 80% target</li>
+        <li>Consolidated ND Value at 44.50% -- significant gap to target</li>
+        <li>Outbound Appointments consolidated at 52.28% -- low funnel fill</li>
+        <li>New Customer acquisition at 42.14% -- large miss vs 1,056 target</li>
+        <li>Digital A2NU% at 18.8% of target -- very low outbound conversion</li>
+        <li>Net Addition value at 22.2% achievement -- closures and releases weighing on AUM growth</li>
+        <li>Guntur, Warangal, Karimnagar showing very low Cx Met % (23-35% range)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- WoW Disbursals Table -->
+  <div class="subsection-title">Week-on-Week Disbursals Summary</div>
+  <div class="ach-table-wrap">
+    <table class="ach-table">
+      <thead>
+        <tr>
+          <th>Loan Type</th>
+          <th>W17 #</th><th>W17 Val</th>
+          <th>W18 #</th><th>W18 Val</th>
+          <th>W19 #</th><th>W19 Val</th>
+          <th>W20 #</th><th>W20 Val</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Fresh Loan</td><td>236</td><td>&#8377;9.9</td><td>278</td><td>&#8377;11.3</td><td>245</td><td>&#8377;12.1</td><td>305</td><td>&#8377;13.5</td></tr>
+        <tr><td>Takeover</td><td>132</td><td>&#8377;11.1</td><td>97</td><td>&#8377;7.4</td><td>103</td><td>&#8377;8.0</td><td>150</td><td>&#8377;11.8</td></tr>
+        <tr><td>DC</td><td>17</td><td>&#8377;0.2</td><td>14</td><td>&#8377;0.3</td><td>16</td><td>&#8377;0.3</td><td>10</td><td>&#8377;0.2</td></tr>
+        <tr class="total-row"><td>New Disbursals</td><td>385</td><td>&#8377;21.2</td><td>389</td><td>&#8377;19.0</td><td>364</td><td>&#8377;20.4</td><td>465</td><td>&#8377;25.5</td></tr>
+        <tr><td>Avg Loan Val (Lakhs)</td><td>5.5</td><td>--</td><td>4.9</td><td>--</td><td>5.6</td><td>--</td><td>5.5</td><td>--</td></tr>
+        <tr><td>Renewal Loan</td><td>281</td><td>&#8377;17.6</td><td>319</td><td>&#8377;17.7</td><td>341</td><td>&#8377;20.3</td><td>409</td><td>&#8377;24.2</td></tr>
+        <tr><td>Release Loan</td><td>590</td><td>&#8377;32.1</td><td>513</td><td>&#8377;29.1</td><td>631</td><td>&#8377;35.1</td><td>729</td><td>&#8377;42.2</td></tr>
+        <tr><td>Full Release</td><td>295</td><td>&#8377;14.0</td><td>234</td><td>&#8377;11.0</td><td>293</td><td>&#8377;13.2</td><td>337</td><td>&#8377;18.1</td></tr>
+        <tr class="total-row"><td>Total Disbursals</td><td>704</td><td>&#8377;43.4</td><td>738</td><td>&#8377;39.7</td><td>736</td><td>&#8377;45.0</td><td>911</td><td>&#8377;52.4</td></tr>
+        <tr><td>AUM (Cr)</td><td colspan="2">&#8377;1,172.0</td><td colspan="2">&#8377;1,182.6</td><td colspan="2">&#8377;1,192.6</td><td colspan="2">&#8377;1,202.8</td></tr>
+        <tr><td>Net Addition (Cr)</td><td colspan="2">&#8377;11.2</td><td colspan="2">&#8377;10.6</td><td colspan="2">&#8377;10.0</td><td colspan="2">&#8377;10.2</td></tr>
+        <tr><td>AUM Growth %</td><td colspan="2">0.97%</td><td colspan="2">0.90%</td><td colspan="2">0.85%</td><td colspan="2">0.85%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: INITIATIVES ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">&#128161;</div>
+    <div>
+      <div class="section-num">Section 02</div>
+      <div class="section-title">New Initiatives and Pilots</div>
+    </div>
+  </div>
+
+  <div class="subsection-title">Bot Summary -- Lead Funnel (Bengaluru, Hyderabad, Pune)</div>
+  <div class="bot-grid">
+    <div class="bot-stat">
+      <div class="bot-stat-label">Total Leads Assigned</div>
+      <div class="bot-stat-val">4,62,577</div>
+      <div class="bot-stat-sub">Bengaluru: 1,30,563 | Hyd: 2,28,148 | Pune: 1,03,866</div>
+    </div>
+    <div class="bot-stat">
+      <div class="bot-stat-label">Connected</div>
+      <div class="bot-stat-val">1,42,812</div>
+      <div class="bot-stat-sub">Connected %: 30.87%</div>
+    </div>
+    <div class="bot-stat">
+      <div class="bot-stat-label">Connected to Caller</div>
+      <div class="bot-stat-val">3,722</div>
+      <div class="bot-stat-sub">Redirection %: 2.61%</div>
+    </div>
+    <div class="bot-stat">
+      <div class="bot-stat-label">Appt + DV Conversions</div>
+      <div class="bot-stat-val">186</div>
+      <div class="bot-stat-sub">CL2A: 0.13% | CCL2A: 5.00%</div>
+    </div>
+    <div class="bot-stat">
+      <div class="bot-stat-label">Unique Loans Generated</div>
+      <div class="bot-stat-val">2</div>
+      <div class="bot-stat-sub">Loan Amount: &#8377;25.5 L (Hyd only)</div>
+    </div>
+    <div class="bot-stat">
+      <div class="bot-stat-label">Total Bot Cost</div>
+      <div class="bot-stat-val">&#8377;5.0 L</div>
+      <div class="bot-stat-sub">Cost/Appt: &#8377;2,690 | Cost/Connected: &#8377;134</div>
+    </div>
+  </div>
+
+  <div class="subsection-title">Bot Cost Breakdown by Duration (in &#8377;)</div>
+  <div class="support-table-wrap">
+    <table class="support-table">
+      <thead>
+        <tr>
+          <th>Duration Bucket</th>
+          <th>Bengaluru</th>
+          <th>Hyderabad</th>
+          <th>Pune</th>
+          <th>Total Cost (&#8377;)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>&lt;15 sec</td><td>66,648</td><td>1,27,293</td><td>41,860</td><td>2,35,800</td></tr>
+        <tr><td>15-30 sec</td><td>28,335</td><td>49,720</td><td>25,803</td><td>1,03,858</td></tr>
+        <tr><td>30-45 sec</td><td>17,420</td><td>21,765</td><td>13,815</td><td>53,000</td></tr>
+        <tr><td>45-60 sec</td><td>6,760</td><td>8,805</td><td>5,985</td><td>21,550</td></tr>
+        <tr><td>60-120 sec</td><td>6,790</td><td>11,330</td><td>5,168</td><td>23,288</td></tr>
+        <tr><td>120+ sec</td><td>1,208</td><td>8,340</td><td>343</td><td>9,890</td></tr>
+        <tr class="total-row"><td>Grand Total</td><td>1,27,160</td><td>2,27,253</td><td>92,973</td><td>4,47,385</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection-title">Caller Performance (May 2026 MTD)</div>
+  <div class="support-table-wrap">
+    <table class="support-table">
+      <thead>
+        <tr>
+          <th>Caller Name</th>
+          <th>Working Days</th>
+          <th>Total Calls</th>
+          <th>Avg Calls/Day</th>
+          <th>Avg Talktime</th>
+          <th>Tickets Assigned</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Meenakshi Srinivasan</td><td>21.5</td><td>22</td><td>1</td><td>0:00:39</td><td>1</td></tr>
+        <tr><td>Merlin Jayanisha P</td><td>21</td><td>161</td><td>8</td><td>0:07:39</td><td>3</td></tr>
+        <tr><td>Jhansi Rani D</td><td>20.5</td><td>133</td><td>6</td><td>0:08:31</td><td>3</td></tr>
+        <tr><td>Gulsan Patra</td><td>22</td><td>33</td><td>2</td><td>0:01:47</td><td>8</td></tr>
+        <tr><td>Aqub Orocorp</td><td>22.5</td><td>123</td><td>5</td><td>0:10:44</td><td>10</td></tr>
+        <tr><td>Aslam Orocorp</td><td>24</td><td>123</td><td>5</td><td>0:08:22</td><td>9</td></tr>
+        <tr><td>Abubakker Siddiq</td><td>11.5</td><td>127</td><td>11</td><td>0:18:00</td><td>9</td></tr>
+        <tr><td>Sai Sree PN</td><td>22</td><td>148</td><td>7</td><td>0:12:38</td><td>9</td></tr>
+        <tr><td>Bala Subramaniyam</td><td>25</td><td>131</td><td>5</td><td>0:09:14</td><td>9</td></tr>
+        <tr class="total-row"><td>Total / Average</td><td>20</td><td>722</td><td>5</td><td>0:07:57</td><td>43</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: SUPPORT ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">&#128222;</div>
+    <div>
+      <div class="section-num">Section 03</div>
+      <div class="section-title">Support</div>
+    </div>
+  </div>
+  <p class="info-note">Period: May 1-17, 2026. Detailed ticket breakdowns and Cx call reasons pending from source data.</p>
+</div>
+
+<!-- ===== SECTION 4: PEOPLE ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">&#128101;</div>
+    <div>
+      <div class="section-num">Section 04</div>
+      <div class="section-title">People</div>
+    </div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-card red">
+      <div class="kpi-label">Total Hiring Target</div>
+      <div class="kpi-value">119</div>
+      <div class="kpi-sub">Across all teams</div>
+      <span class="pill red">Apr Month</span>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">People Hired</div>
+      <div class="kpi-value">41</div>
+      <div class="kpi-sub">Across all teams</div>
+      <span class="pill red">34.45%</span>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Vijayawada</div>
+      <div class="kpi-value">5/5</div>
+      <div class="kpi-sub">Target met</div>
+      <span class="pill green">100%</span>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Central Team</div>
+      <div class="kpi-value">1/1</div>
+      <div class="kpi-sub">Perf. Marketing</div>
+      <span class="pill green">100%</span>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">Telecalling</div>
+      <div class="kpi-value">0/9</div>
+      <div class="kpi-sub">No hires yet</div>
+      <span class="pill red">0%</span>
+    </div>
+  </div>
+
+  <div class="people-table-wrap">
+    <table class="people-table">
+      <thead>
+        <tr>
+          <th>Team / City</th>
+          <th>Hiring Target</th>
+          <th>People Hired</th>
+          <th>Achievement %</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Telecalling</td><td>9</td><td>0</td><td><span class="pill red">0.00%</span></td><td>--</td></tr>
+        <tr><td>Support</td><td>7</td><td>2</td><td><span class="pill red">28.57%</span></td><td>--</td></tr>
+        <tr><td>Chennai City</td><td>23</td><td>8</td><td><span class="pill red">34.78%</span></td><td>4 in training</td></tr>
+        <tr><td>Bangalore City</td><td>25</td><td>5</td><td><span class="pill red">20.00%</span></td><td>--</td></tr>
+        <tr><td>Pune City</td><td>12</td><td>4</td><td><span class="pill red">33.33%</span></td><td>--</td></tr>
+        <tr><td>Hyderabad</td><td>25</td><td>11</td><td><span class="pill red">44.00%</span></td><td>--</td></tr>
+        <tr><td>Vijayawada</td><td>5</td><td>5</td><td><span class="pill green">100.00%</span></td><td>--</td></tr>
+        <tr><td>Guntur</td><td>9</td><td>3</td><td><span class="pill red">33.33%</span></td><td>--</td></tr>
+        <tr><td>Warangal</td><td>3</td><td>2</td><td><span class="pill amber">66.67%</span></td><td>--</td></tr>
+        <tr><td>Karimnagar</td><td>0</td><td>0</td><td>--</td><td>--</td></tr>
+        <tr><td>Central Team</td><td>1</td><td>1</td><td><span class="pill green">100.00%</span></td><td>Performance Marketing</td></tr>
+        <tr class="total-row"><td>Total</td><td>119</td><td>41</td><td>34.45%</td><td>--</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-row">
+    <div class="summary-box improve">
+      <div class="summary-box-title">&#9651; Needs Improvement</div>
+      <ul>
+        <li>Overall hiring achievement at 34.45% -- significant gap to 119 headcount target</li>
+        <li>Telecalling: 0 hires against 9 target -- pipeline needs urgent attention</li>
+        <li>Bengaluru at 20% -- lowest among major cities</li>
+        <li>Hyderabad at 44% despite being the largest market by AUM</li>
+      </ul>
+    </div>
+    <div class="summary-box worked">
+      <div class="summary-box-title">&#10003; What Worked Well</div>
+      <ul>
+        <li>Vijayawada achieved 100% hiring target (5/5)</li>
+        <li>Central Team hit 100% for Performance Marketing role</li>
+        <li>Chennai has 4 more in training pipeline -- will convert soon</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 5: EXPANSION ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">&#127968;</div>
+    <div>
+      <div class="section-num">Section 05</div>
+      <div class="section-title">Expansion -- Cluster Office Network</div>
+    </div>
+  </div>
+
+  <div class="expansion-grid">
+    <div class="city-card">
+      <div class="city-card-header">Chennai</div>
+      <div class="city-card-body">
+        <div class="territory-name">Chn -- North</div>
+        <ul class="co-list">
+          <li>Perambur</li>
+          <li>Ambattur</li>
+        </ul>
+        <div class="territory-name">Chn -- South</div>
+        <ul class="co-list">
+          <li class="yet">Yet to Open</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <div class="city-card-header">Bangalore</div>
+      <div class="city-card-body">
+        <div class="territory-name">Blr -- North</div>
+        <ul class="co-list">
+          <li class="yet">Yet to Open</li>
+        </ul>
+        <div class="territory-name">Blr South</div>
+        <ul class="co-list">
+          <li>JP Nagar</li>
+          <li>Banashankari</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <div class="city-card-header">Hyderabad</div>
+      <div class="city-card-body">
+        <div class="territory-name">Hyd -- East</div>
+        <ul class="co-list">
+          <li>ECIL</li>
+          <li>Kharmanghat</li>
+          <li>Malkajgiri</li>
+          <li>Uppal</li>
+          <li>Vanasthalipuram</li>
+          <li>TCPL -- Nacharam</li>
+        </ul>
+        <div class="territory-name">Hyd -- West</div>
+        <ul class="co-list">
+          <li>KPHB</li>
+          <li>Madhapur</li>
+          <li>Manikonda</li>
+          <li>Miyapur</li>
+        </ul>
+        <div class="territory-name">Hyd -- Central</div>
+        <ul class="co-list">
+          <li>Bowenpally</li>
+          <li>Himayathnagar</li>
+          <li>Mehidpatnam</li>
+          <li>Punjagutta</li>
+          <li>Secundrabad</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <div class="city-card-header">Pune</div>
+      <div class="city-card-body">
+        <div class="territory-name">PMC</div>
+        <ul class="co-list"><li>Shivajinagar</li></ul>
+        <div class="territory-name">PCMC</div>
+        <ul class="co-list"><li>Pimpri Chinchwad</li></ul>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <div class="city-card-header">Vijayawada</div>
+      <div class="city-card-body">
+        <div class="territory-name">Vijayawada</div>
+        <ul class="co-list">
+          <li>Patamatta</li>
+          <li>SN Puram</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <div class="city-card-header">Guntur</div>
+      <div class="city-card-body">
+        <div class="territory-name">Guntur</div>
+        <ul class="co-list"><li>Guntur</li></ul>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <div class="city-card-header">Warangal</div>
+      <div class="city-card-body">
+        <div class="territory-name">Warangal</div>
+        <ul class="co-list"><li>Warangal</li></ul>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <div class="city-card-header">Karimnagar</div>
+      <div class="city-card-body">
+        <div class="territory-name">Karimnagar</div>
+        <ul class="co-list"><li>Karimnagar</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: AUDIT ===== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">&#128203;</div>
+    <div>
+      <div class="section-num">Section 06</div>
+      <div class="section-title">Audit</div>
+    </div>
+  </div>
+
+  <div class="subsection-title">Process Audit -- Accuracy Rates</div>
+  <div class="audit-table-wrap">
+    <table class="audit-table">
+      <thead>
+        <tr>
+          <th>Audit Type</th>
+          <th>Apr-26 Audits</th>
+          <th>May-26 Audits</th>
+          <th>Apr-26 Successful</th>
+          <th>May-26 Successful</th>
+          <th>Apr-26 Rate</th>
+          <th>May-26 Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Kit Bag Audit Adherence</td><td>190</td><td>63</td><td>172</td><td>60</td><td class="rate-up">90.53%</td><td class="rate-up">95.24%</td></tr>
+        <tr><td>Process Audit -- Fresh Loan</td><td>101</td><td>39</td><td>95</td><td>36</td><td class="rate-up">94.06%</td><td class="rate-dn">92.31%</td></tr>
+        <tr><td>Process Audit -- Takeover</td><td>64</td><td>18</td><td>58</td><td>17</td><td class="rate-up">90.63%</td><td class="rate-up">94.44%</td></tr>
+        <tr><td>Process Audit -- Part Release</td><td>9</td><td>2</td><td>8</td><td>0</td><td class="rate-up">88.89%</td><td class="rate-dn">0.00%</td></tr>
+        <tr><td>Process Audit -- Release</td><td>74</td><td>33</td><td>71</td><td>32</td><td class="rate-up">95.95%</td><td class="rate-up">96.97%</td></tr>
+        <tr class="total-row"><td>Process Audit -- Total</td><td>248</td><td>92</td><td>232</td><td>85</td><td>93.55%</td><td>92.39%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection-title">Gold Audit</div>
+  <div class="audit-table-wrap">
+    <table class="audit-table">
+      <thead>
+        <tr>
+          <th>Audit Type</th>
+          <th>Apr-26 Packets</th>
+          <th>May-26 Packets</th>
+          <th>Apr-26 Major Deviations</th>
+          <th>May-26 Major Deviations</th>
+          <th>Apr-26 Soft Recovery</th>
+          <th>May-26 Soft Recovery</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Oro Gold Audit</td><td>170</td><td>48</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>TCPL Gold Audit</td><td>17</td><td>--</td><td>0</td><td>--</td><td>1</td><td>--</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection-title">Audit Action Points</div>
+  <div class="audit-actions-table-wrap">
+    <table class="audit-actions-table">
+      <thead>
+        <tr>
+          <th style="min-width:200px">Activity</th>
+          <th style="min-width:340px">Update / Action Point</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Kit Audit Adherence</td>
+          <td>Accuracy increased by 4.71% from Apr 2026 (90.53% to 95.24%)</td>
+          <td><span class="cat-badge internal">Internal Audit</span></td>
+        </tr>
+        <tr>
+          <td>Process Audit</td>
+          <td>Accuracy decreased by 1.16% from Apr 2026 (93.55% to 92.39%)</td>
+          <td><span class="cat-badge internal">Internal Audit</span></td>
+        </tr>
+        <tr>
+          <td>Oro Gold Audit</td>
+          <td>No major deviations reported</td>
+          <td><span class="cat-badge internal">Internal Audit</span></td>
+        </tr>
+        <tr>
+          <td>Tenmark Gold Audit</td>
+          <td>May audit planned</td>
+          <td><span class="cat-badge internal">Internal Audit</span></td>
+        </tr>
+        <tr>
+          <td>AP Calibration</td>
+          <td>AMJ quarter planned -- will be completed before June 2026</td>
+          <td><span class="cat-badge internal">Internal Audit</span></td>
+        </tr>
+        <tr>
+          <td>Tenmark Internal Audit</td>
+          <td>May audit planned</td>
+          <td><span class="cat-badge internal">Internal Audit</span></td>
+        </tr>
+        <tr>
+          <td>Prestasi &amp; SFL Document Verification</td>
+          <td>Verification and status updates planned every Saturday</td>
+          <td><span class="cat-badge internal">Internal Audit</span></td>
+        </tr>
+        <tr>
+          <td>Tenmark &amp; Oro Systematic Audit</td>
+          <td>Under discussion with Tech Team</td>
+          <td><span class="cat-badge internal">Internal Audit</span></td>
+        </tr>
+        <tr>
+          <td>Cluster Office Audit</td>
+          <td>Audits planned for all cities -- scheduled once every two months</td>
+          <td><span class="cat-badge internal">Internal Audit</span></td>
+        </tr>
+        <tr>
+          <td>New AP Appraisal Training</td>
+          <td>Every batch across all cities per new training module</td>
+          <td><span class="cat-badge training">Training</span></td>
+        </tr>
+        <tr>
+          <td>Federal Auctions</td>
+          <td>June first week -- inspections planned</td>
+          <td><span class="cat-badge auction">Auction</span></td>
+        </tr>
+        <tr>
+          <td>Collateral Pending Auction</td>
+          <td>Buyer inspections completed for all cities -- final approval for sale under discussion</td>
+          <td><span class="cat-badge auction">Auction / Private Sale</span></td>
+        </tr>
+        <tr>
+          <td>GBS at Branch Level</td>
+          <td>Experimental version currently being tested in Hyderabad cluster offices</td>
+          <td><span class="cat-badge gbs">GBS</span></td>
+        </tr>
+        <tr>
+          <td>Closure Friction Document</td>
+          <td>Under discussion with Ops and Central</td>
+          <td><span class="cat-badge ops">Ops</span></td>
+        </tr>
+        <tr>
+          <td>Private Sale New Declaration and Process</td>
+          <td>Under discussion with SRL</td>
+          <td><span class="cat-badge private">Private Sale</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  <span>ORO Gold Lending</span> &nbsp;|&nbsp; Weekly Business Update &nbsp;|&nbsp; Week 20, May 1--17 2026 &nbsp;|&nbsp; Confidential -- Internal Use Only
+</div>
+
+<script>
+Chart.register(ChartDataLabels);
+
+const GREY = '#8C8C8E';
+const GOLD = '#D4A843';
+const GOLD_DARK = '#8B6508';
+const AMBER = '#E07B00';
+const NAVY = '#1A2B4A';
+const BLUE = '#1A3F6F';
+const GREEN = '#2D6A4F';
+const weeks = ['Week 17', 'Week 18', 'Week 19', 'Week 20'];
+const weekColors = [GREY, GOLD_DARK, GOLD, AMBER];
+
+const commonDL = {
+  display: false
+};
+
+// ND Value Chart
+new Chart(document.getElementById('ndValueChart'), {
+  type: 'bar',
+  data: {
+    labels: weeks,
+    datasets: [{
+      label: 'ND Value (Cr)',
+      data: [21.2, 19.0, 20.4, 25.5],
+      backgroundColor: weekColors,
+      borderRadius: 5,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      datalabels: {
+        display: true,
+        anchor: 'end',
+        align: 'top',
+        formatter: v => '₹' + v,
+        font: { size: 11, weight: '600' },
+        color: '#1C1C1E'
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { grid: { color: '#F0EFec' }, ticks: { font: { size: 10 }, callback: v => '₹' + v }, beginAtZero: true }
+    }
+  }
+});
+
+// ND Volume Chart
+new Chart(document.getElementById('ndVolChart'), {
+  type: 'bar',
+  data: {
+    labels: weeks,
+    datasets: [{
+      label: 'ND Volume',
+      data: [385, 389, 364, 465],
+      backgroundColor: weekColors,
+      borderRadius: 5,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      datalabels: {
+        display: true,
+        anchor: 'end',
+        align: 'top',
+        font: { size: 11, weight: '600' },
+        color: '#1C1C1E'
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { grid: { color: '#F0EFec' }, ticks: { font: { size: 10 } }, beginAtZero: true }
+    }
+  }
+});
+
+// Loan Mix Chart (stacked)
+new Chart(document.getElementById('loanMixChart'), {
+  type: 'bar',
+  data: {
+    labels: weeks,
+    datasets: [
+      { label: 'Fresh', data: [9.9, 11.3, 12.1, 13.5], backgroundColor: BLUE, borderRadius: 0 },
+      { label: 'Takeover', data: [11.1, 7.4, 8.0, 11.8], backgroundColor: GREEN, borderRadius: 0 },
+      { label: 'DC', data: [0.2, 0.3, 0.3, 0.2], backgroundColor: GOLD, borderRadius: 0 }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 10 }, boxWidth: 12 } },
+      datalabels: { display: false }
+    },
+    scales: {
+      x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { stacked: true, grid: { color: '#F0EFec' }, ticks: { font: { size: 10 }, callback: v => '₹' + v }, beginAtZero: true }
+    }
+  }
+});
+
+// AUM Line Chart
+new Chart(document.getElementById('aumChart'), {
+  type: 'line',
+  data: {
+    labels: weeks,
+    datasets: [{
+      label: 'AUM (Cr)',
+      data: [1172.0, 1182.6, 1192.6, 1202.8],
+      borderColor: GOLD,
+      backgroundColor: 'rgba(212,168,67,0.12)',
+      borderWidth: 2.5,
+      pointBackgroundColor: GOLD,
+      pointRadius: 5,
+      fill: true,
+      tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      datalabels: {
+        display: true,
+        anchor: 'top',
+        align: 'top',
+        formatter: v => '₹' + v.toFixed(0),
+        font: { size: 10, weight: '600' },
+        color: GOLD_DARK
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { grid: { color: '#F0EFec' }, ticks: { font: { size: 10 }, callback: v => '₹' + v }, min: 1150 }
+    }
+  }
+});
+
+// City ND Chart (grouped bar)
+const cities = ['Chennai', 'Bengaluru', 'Hyderabad', 'Pune', 'Vijayawada', 'Guntur', 'Warangal', 'Karimnagar'];
+const cityData = {
+  w17: [2.2, 3.8, 8.8, 3.5, 1.3, 0.0, 0.5, 0.9],
+  w18: [2.4, 4.2, 7.3, 2.2, 1.5, 0.3, 0.7, 0.5],
+  w19: [3.2, 5.4, 6.9, 2.2, 1.7, 0.1, 0.1, 0.7],
+  w20: [3.8, 6.6, 9.1, 3.5, 0.8, 0.2, 0.3, 1.1]
+};
+new Chart(document.getElementById('cityNDChart'), {
+  type: 'bar',
+  data: {
+    labels: cities,
+    datasets: [
+      { label: 'Week 17', data: cityData.w17, backgroundColor: GREY, borderRadius: 3 },
+      { label: 'Week 18', data: cityData.w18, backgroundColor: GOLD_DARK, borderRadius: 3 },
+      { label: 'Week 19', data: cityData.w19, backgroundColor: GOLD, borderRadius: 3 },
+      { label: 'Week 20', data: cityData.w20, backgroundColor: AMBER, borderRadius: 3 }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 10 }, boxWidth: 12 } },
+      datalabels: { display: false }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { grid: { color: '#F0EFec' }, ticks: { font: { size: 10 }, callback: v => '₹' + v }, beginAtZero: true }
+    }
+  }
+});
+
+// Achievement Table
+const achData = [
+  { m:'Outbound Appts', chn:[0,1,'NA'], blr:[260,153,'58.85%'], hyd:[598,350,'58.53%'], pun:[195,72,'36.92%'], vjw:[89,31,'34.83%'], oro:[1226,641,'52.28%'] },
+  { m:'Outbound DVs', chn:[39,15,'38.46%'], blr:[15,6,'40.00%'], hyd:[16,11,'68.75%'], pun:[17,4,'23.53%'], vjw:[3,0,'0.00%'], oro:[90,36,'40.00%'] },
+  { m:'Digital Appts', chn:[0,0,'NA'], blr:[62,49,'79.03%'], hyd:[72,53,'73.61%'], pun:[16,8,'50.00%'], vjw:[13,8,'61.54%'], oro:[203,137,'67.49%'] },
+  { m:'Digital DVs', chn:[58,24,'41.38%'], blr:[58,32,'55.17%'], hyd:[44,22,'50.00%'], pun:[13,8,'61.54%'], vjw:[8,5,'62.50%'], oro:[181,93,'51.38%'] },
+  { m:'Total Appointments', chn:[0,1,'0.00%'], blr:[322,202,'62.73%'], hyd:[670,403,'60.15%'], pun:[211,80,'37.91%'], vjw:[102,39,'38.24%'], oro:[1429,778,'54.44%'] },
+  { m:'Total DVs', chn:[97,39,'40.21%'], blr:[73,38,'52.05%'], hyd:[60,33,'55.00%'], pun:[30,12,'40.00%'], vjw:[11,5,'45.45%'], oro:[271,129,'47.60%'] },
+  { m:'Cx Met %', chn:['0.0%','0.0%','0.0%'], blr:['60.0%','47.2%','78.7%'], hyd:['60.0%','49.9%','83.2%'], pun:['70.0%','67.3%','96.1%'], vjw:['60.0%','52.3%','87.2%'], oro:['60.0%','49.4%','82.3%'] },
+  { m:'A2NU% -- Outbound', chn:['0.0%','0.0%','0.0%'], blr:['18.0%','7.0%','38.9%'], hyd:['18.0%','7.0%','38.9%'], pun:['18.0%','9.3%','51.7%'], vjw:['15.0%','5.1%','34.0%'], oro:['17.7%','7.5%','42.4%'] },
+  { m:'A2NU% -- Digital', chn:['0.0%','0.0%','0.0%'], blr:['35.0%','11.1%','31.7%'], hyd:['35.0%','2.7%','7.7%'], pun:['45.0%','0.0%','0.0%'], vjw:['25.0%','0.0%','0.0%'], oro:['33.0%','6.2%','18.8%'] },
+  { m:'DV -- A2NU%', chn:['70.6%','57.5%','81.4%'], blr:['57.0%','51.4%','90.2%'], hyd:['57.6%','38.2%','66.4%'], pun:['55.0%','66.7%','121.3%'], vjw:['53.0%','60.0%','113.2%'], oro:['61.4%','50.8%','82.7%'] },
+  { m:'New Customers', chn:[170,76,'44.71%'], blr:[209,102,'48.80%'], hyd:[362,143,'39.50%'], pun:[144,69,'47.92%'], vjw:[52,15,'28.85%'], oro:[1056,445,'42.14%'] },
+  { m:'ND Volume #', chn:[310,172,'55.48%'], blr:[406,216,'53.20%'], hyd:[717,279,'38.91%'], pun:[274,145,'52.92%'], vjw:[87,33,'37.93%'], oro:[1939,903,'46.57%'] },
+  { m:'ND Value ₹Cr', chn:['14.9','7.5','50.40%'], blr:['20.3','12.6','62.10%'], hyd:['47.4','17.4','36.84%'], pun:['11.5','6.1','53.15%'], vjw:['7.0','2.6','38.01%'], oro:['110.2','49.0','44.50%'] },
+  { m:'Net Addition ₹Cr', chn:['10.1','1.1','11.22%'], blr:['13.8','9.4','67.92%'], hyd:['32.2','5.5','17.10%'], pun:['7.9','3.1','40.06%'], vjw:['3.5','-1.3','-37.52%'], oro:['75.7','16.8','22.20%'] },
+  { m:'AUM ₹Cr', chn:['179.6','178.5','NA'], blr:['236.9','239.5','NA'], hyd:['540.2','537.0','NA'], pun:['140.6','140.6','NA'], vjw:['63.7','62.8','NA'], oro:['1,207.6','1,202.7','NA'] },
+];
+
+function pillClass(val) {
+  if (val === 'NA' || val === '--') return '';
+  const num = parseFloat(val);
+  if (isNaN(num)) return '';
+  if (num >= 80) return 'green';
+  if (num >= 50) return 'amber';
+  return 'red';
+}
+
+function fmtPct(val) {
+  if (val === 'NA' || val === '--') return '<span style="color:var(--grey);font-size:11px">NA</span>';
+  const cls = pillClass(val);
+  if (!cls) return val;
+  return `<span class="pill ${cls}">${val}</span>`;
+}
+
+const tbody = document.getElementById('achTableBody');
+achData.forEach(row => {
+  const cols = [row.chn, row.blr, row.hyd, row.pun, row.vjw, row.oro];
+  let html = `<tr><td>${row.m}</td>`;
+  cols.forEach(c => {
+    html += `<td>${c[0]}</td><td>${c[1]}</td><td>${fmtPct(String(c[2]))}</td>`;
+  });
+  html += '</tr>';
+  tbody.innerHTML += html;
+});
+</script>
+
+<!-- ===== ARCHIVE SECTION ===== -->
+<div style="background:#1C1C1E; margin-top:0; padding:48px 0 60px;">
+  <div style="max-width:1100px; margin:0 auto; padding:0 32px;">
+    <div style="display:flex; align-items:center; gap:14px; margin-bottom:28px;">
+      <div style="width:36px;height:36px;background:#D4A843;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">&#128196;</div>
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);">Previous Reports</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:22px;color:#fff;">Archive</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">
+
+      <!-- Archive Card: April 2026 Full Month -->
+      <a href="archive/april-2026.html" style="text-decoration:none;">
+        <div style="background:#2C2C2E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 24px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#D4A843'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <span style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);">Full Month Report</span>
+            <span style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#D4A843;background:rgba(212,168,67,0.12);padding:3px 10px;border-radius:20px;">April 2026</span>
+          </div>
+          <div style="font-family:'DM Serif Display',serif;font-size:20px;color:#fff;margin-bottom:6px;">April 2026 Business Update</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:16px;">Apr 1 -- 30, 2026 &nbsp;|&nbsp; Weeks 14-17</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;background:#FDECEA;color:#9B2335;">AUM: &#8377;1,182.6 Cr</span>
+            <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;background:#FDECEA;color:#9B2335;">ND: &#8377;94.6 Cr (52%)</span>
+            <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;background:#EAF4EE;color:#2D6A4F;">Cx Met: 87%</span>
+          </div>
+          <div style="margin-top:14px;font-size:12px;color:#D4A843;font-weight:600;">View Report &#8594;</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
