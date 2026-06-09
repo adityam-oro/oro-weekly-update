@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORO Business Update -- April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+<style>
+:root{
+  --gold:#D4A843;--gold-dark:#8B6508;--gold-pale:#FBF5E6;
+  --ink:#1C1C1E;--navy:#1A2B4A;
+  --green:#2D6A4F;--green-bg:#EAF4EE;
+  --amber:#E07B00;--amber-bg:#FFF3E0;
+  --red:#9B2335;--red-bg:#FDECEA;
+  --surface:#FAFAF8;--grey:#6B7280;--grey-light:#E5E7EB;
+  /* April compat aliases */
+  --gold-dk:#8B6508;--border:#E5E7EB;--text:#1C1C1E;--muted:#6B7280;--navy-alt:#F3F4F8;
+}
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    background: #fff;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--ink);
+    border-bottom: 4px solid var(--gold);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--gold);
+    letter-spacing: 5px;
+  }
+  .header-meta { text-align: right; }
+  .header-period { font-size: 15px; font-weight: 700; color: var(--gold); }
+  .header-sub { font-size: 12px; color: rgba(255,255,255,0.45); }
+
+  /* ── PAGE ── */
+  .page { max-width: 1180px; margin: 0 auto; padding: 28px 28px 80px; }
+
+  /* ── KPI STRIP ── */
+  .kpi-row-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin: 24px 0 10px;
+  }
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .kpi-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    border-top: 4px solid var(--border);
+  }
+  .kpi-card.red  { border-top-color: var(--red); }
+  .kpi-card.amber{ border-top-color: var(--amber); }
+  .kpi-card.green{ border-top-color: var(--green); }
+  .kpi-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .kpi-val.red   { color: var(--red); }
+  .kpi-val.amber { color: var(--amber); }
+  .kpi-val.green { color: var(--green); }
+  .kpi-label { font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+  .kpi-pct { font-size: 12px; font-weight: 600; }
+  .kpi-pct.red   { color: var(--red); }
+  .kpi-pct.amber { color: var(--amber); }
+  .kpi-pct.green { color: var(--green); }
+
+  /* ── SECTION ── */
+  .section { margin-top: 44px; }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--navy);
+    border-left: 5px solid var(--gold);
+    padding: 12px 18px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  .section-num {
+    background: var(--gold);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 13px;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: #fff;
+  }
+
+  /* ── SUB LABEL ── */
+  .sub-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 22px 0 10px;
+  }
+  .sub-label-bar {
+    width: 5px; height: 20px;
+    background: var(--gold);
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .sub-label-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .sub-label-note {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ── TABLES ── */
+  .tbl-wrap {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--navy); }
+  thead th {
+    padding: 10px 12px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  thead th.r { text-align: right; }
+  thead th.c { text-align: center; }
+  tbody tr:nth-child(even) { background: var(--navy-alt); }
+  tbody tr:hover { background: #e4eaf5; }
+  tbody td { padding: 9px 12px; border-bottom: 1px solid var(--border); }
+  tbody td.r { text-align: right; }
+  tbody td.c { text-align: center; }
+  tr.tot td { background: var(--navy) !important; color: #fff !important; font-weight: 700; }
+  tr.sub-hd td { background: #2a3660 !important; color: rgba(255,255,255,0.75) !important; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; padding: 6px 12px; }
+
+  /* ── PILLS ── */
+  .pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    min-width: 44px;
+    text-align: center;
+  }
+  .pill.g { background: var(--green-bg); color: var(--green); }
+  .pill.a { background: var(--amber-bg); color: var(--amber); }
+  .pill.r { background: var(--red-bg); color: var(--red); }
+  .pill.x { background: #f0f0f0; color: #888; }
+  .vb { font-weight: 700; }
+  .growth-g { color: var(--green); font-weight: 700; }
+  .growth-r { color: var(--red); font-weight: 700; }
+  .tva-t { color: var(--muted); font-size: 12px; }
+  .tva-a { font-weight: 700; }
+
+  /* ── HIGHLIGHTS ── */
+  .hl-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0 24px;
+  }
+  .hl-box { border-radius: 10px; padding: 18px 20px; }
+  .hl-box.good { background: var(--green-bg); border: 1px solid #b7dcc8; border-left: 5px solid var(--green); }
+  .hl-box.bad  { background: var(--amber-bg); border: 1px solid #f5cfa0; border-left: 5px solid var(--amber); }
+  .hl-title {
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+  .hl-box.good .hl-title { color: var(--green); }
+  .hl-box.bad  .hl-title { color: var(--amber); }
+  .hl-box ul { list-style: none; }
+  .hl-box ul li {
+    font-size: 13px;
+    padding: 6px 0 6px 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    position: relative;
+    line-height: 1.5;
+  }
+  .hl-box ul li:last-child { border-bottom: none; }
+  .hl-box.good ul li::before { content: '✔'; position: absolute; left: 0; top: 7px; color: var(--green); font-size: 11px; }
+  .hl-box.bad  ul li::before { content: '⚠'; position: absolute; left: 0; top: 7px; color: var(--amber); font-size: 11px; }
+
+  /* ── CHARTS ── */
+  /* Key rule: chart cards use flex column so canvas never overlaps text */
+  .chart-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0 20px;
+  }
+  .chart-1col {
+    margin: 16px 0 20px;
+  }
+  .chart-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    /* flex column ensures title -> note -> canvas -> insight stack vertically, no overlaps */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .chart-card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+  .chart-card-note {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.4;
+    flex-shrink: 0;
+  }
+  .chart-legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+  .chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .chart-legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  /* The canvas container -- fixed height, no position:relative overflow issues */
+  .chart-canvas-wrap {
+    width: 100%;
+    height: 240px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .chart-canvas-wrap.tall { height: 300px; }
+  .chart-canvas-wrap canvas {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .chart-insight {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    background: #f5f4f1;
+    padding: 8px 12px;
+    border-radius: 6px;
+    line-height: 1.5;
+    flex-shrink: 0;
+  }
+
+  /* ── AUM TILES ── */
+  .aum-city-wrap { margin-bottom: 18px; }
+  .aum-city-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-left: 10px;
+    border-left: 4px solid var(--gold);
+    margin-bottom: 8px;
+  }
+  .aum-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .aum-tile {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    min-width: 120px;
+  }
+  .aum-tile.total { background: var(--navy); }
+  .aum-tile.grand { background: var(--gold); }
+  .aum-tile-name { font-size: 11px; color: var(--muted); margin-bottom: 3px; }
+  .aum-tile.total .aum-tile-name { color: rgba(255,255,255,0.6); }
+  .aum-tile.grand .aum-tile-name { color: var(--ink); opacity: 0.7; }
+  .aum-tile-val { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink); }
+  .aum-tile.total .aum-tile-val { color: #fff; }
+  .aum-tile.grand .aum-tile-val { color: var(--ink); font-size: 22px; }
+
+  /* ── BOT TILES ── */
+  .bot-tile-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .bot-tile {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .bot-tile-name { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .bot-tile-val { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); line-height: 1.1; margin-bottom: 3px; }
+  .bot-tile-sub { font-size: 11px; color: var(--muted); }
+
+  /* ── PEOPLE / SUPPORT NOTES ── */
+  .note-box {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.65;
+    margin: 10px 0 16px;
+    color: var(--text);
+  }
+  .note-box strong { color: var(--ink); }
+
+  /* ── EXPANSION ── */
+  .co-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    gap: 12px;
+    margin: 14px 0 16px;
+  }
+  .co-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .co-card-head { background: var(--navy); color: #fff; font-size: 11px; font-weight: 700; padding: 8px 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .co-card-body { padding: 10px 12px; }
+  .co-terr { font-size: 10px; color: var(--muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.3px; margin: 7px 0 3px; }
+  .co-terr:first-child { margin-top: 0; }
+  .co-item { font-size: 12px; color: var(--text); padding: 2px 0 2px 10px; position: relative; }
+  .co-item::before { content: '-'; position: absolute; left: 0; color: var(--gold-dk); }
+  .co-item.progress { color: var(--amber); font-style: italic; }
+  .co-bullets { list-style: none; margin: 8px 0 16px; }
+  .co-bullets li { font-size: 13px; color: var(--text); padding: 5px 0 5px 16px; position: relative; line-height: 1.55; border-bottom: 1px solid var(--border); }
+  .co-bullets li:last-child { border-bottom: none; }
+  .co-bullets li::before { content: '--'; position: absolute; left: 0; color: var(--gold-dk); font-weight: 700; }
+
+  /* ── AUDIT ── */
+  .tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 5px; background: var(--navy-alt); color: var(--navy); text-transform: uppercase; white-space: nowrap; }
+  .tag-true { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 5px; background: var(--green-bg); color: var(--green); }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); border-top: 4px solid var(--gold); text-align: center; padding: 18px; font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 48px; }
+  .footer strong { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .bot-tile-row { grid-template-columns: repeat(2, 1fr); }
+    .chart-2col { grid-template-columns: 1fr; }
+    .hl-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .header { flex-direction: column; gap: 8px; text-align: center; }
+    .header-meta { text-align: center; }
+    .page { padding: 16px 14px 60px; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .bot-tile-row { grid-template-columns: repeat(2, 1fr); }
+    .chart-canvas-wrap { height: 200px; }
+    .chart-canvas-wrap.tall { height: 240px; }
+    .co-grid { grid-template-columns: repeat(2, 1fr); }
+    .aum-tile { min-width: calc(50% - 8px); }
+  }
+
+/* ── STICKY NAV ── */
+.sticky-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--ink);border-bottom:2px solid var(--gold);display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:48px;box-shadow:0 2px 12px rgba(0,0,0,0.18);}
+.sticky-nav-links{display:flex;gap:4px;}
+.sticky-nav-links a{font-size:11px;font-weight:600;color:rgba(255,255,255,0.55);text-decoration:none;padding:6px 12px;border-radius:4px;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.15s;}
+.sticky-nav-links a:hover,.sticky-nav-links a.active{color:var(--gold);background:rgba(212,168,67,0.1);}
+.sticky-nav-logo{font-family:'DM Serif Display',serif;font-size:18px;color:var(--gold);letter-spacing:0.08em;}
+.sticky-nav-right{display:flex;align-items:center;gap:10px;}
+.back-btn{font-size:11px;font-weight:600;color:var(--gold);text-decoration:none;border:1px solid rgba(212,168,67,0.4);border-radius:4px;padding:5px 12px;letter-spacing:0.05em;transition:all 0.15s;white-space:nowrap;}
+.back-btn:hover{background:rgba(212,168,67,0.12);}
+body{scroll-behavior:smooth;}
+body.has-nav{padding-top:48px;}
+@media(max-width:768px){.sticky-nav-links{display:none;}.sticky-nav{padding:0 16px;}}
+</style>
+</head>
+<body class="has-nav">
+<nav class="sticky-nav">
+  <div class="sticky-nav-logo">ORO</div>
+  <div class="sticky-nav-links">
+    <a href="#s1">Business</a>
+    <a href="#s2">Week on Week</a>
+    <a href="#s3">Initiatives</a>
+    <a href="#s4">Support</a>
+    <a href="#s5">People</a>
+    <a href="#s6">Expansion</a>
+    <a href="#s7">Audit</a>
+  </div>
+  <div class="sticky-nav-right">
+    <a href="../index.html" class="back-btn">&#8592; Latest Report</a>
+  </div>
+</nav>
+
+<div class="header">
+  <div>
+    <div class="header-logo">ORO</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:2px;">Business Update &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp; Full Month Summary</div>
+  </div>
+  <div class="header-meta">
+    <div class="header-period">April 2026</div>
+    <div class="header-sub">Confidential</div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- KPI STRIP -->
+<div class="kpi-row-label">April 2026 vs. target -- Full Month</div>
+<div class="kpi-row">
+  <div class="kpi-card red"><div class="kpi-val red">1,523</div><div class="kpi-label">Total Appointments</div><div class="kpi-pct red">59% of target</div></div>
+  <div class="kpi-card red"><div class="kpi-val red">282</div><div class="kpi-label">Total DVs</div><div class="kpi-pct red">61% of target</div></div>
+  <div class="kpi-card red"><div class="kpi-val red">934</div><div class="kpi-label">New Customers</div><div class="kpi-pct red">54% of target</div></div>
+  <div class="kpi-card red"><div class="kpi-val red">Rs 94.6 Cr</div><div class="kpi-label">ND Value</div><div class="kpi-pct red">52% of target</div></div>
+</div>
+<div class="kpi-row">
+  <div class="kpi-card red"><div class="kpi-val red">Rs 44.5 Cr</div><div class="kpi-label">Net Addition</div><div class="kpi-pct red">36% of target</div></div>
+  <div class="kpi-card green"><div class="kpi-val green">Rs 1,182.6 Cr</div><div class="kpi-label">AUM across 8 cities</div><div class="kpi-pct green">3.97% growth</div></div>
+  <div class="kpi-card red"><div class="kpi-val red">1,761</div><div class="kpi-label">ND Volume</div><div class="kpi-pct red">55% of target</div></div>
+  <div class="kpi-card green"><div class="kpi-val green">52.1%</div><div class="kpi-label">Customer Met %</div><div class="kpi-pct green">87% of target</div></div>
+</div>
+
+<!-- ===== SECTION 1 ===== -->
+<div class="section">
+<div id="s1" class="section-head"><div class="section-num">1</div><div class="section-title">Business Performance</div></div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Period Comparison</div><div class="sub-label-note">| First Half vs Second Half &nbsp; Growth % = H2 vs H1</div></div>
+<div class="tbl-wrap"><table>
+  <thead><tr>
+    <th>Metric</th>
+    <th class="c">Apr 1-12 (Wks 14-15)</th>
+    <th class="c">Apr 13-28 (Wks 16-17)</th>
+    <th class="c" style="background:#8B6508;">Full April &nbsp;<span style="font-size:10px;font-weight:400;">(H2 vs H1)</span></th>
+  </tr></thead>
+  <tbody>
+    <tr><td>Total Appointments</td><td class="c">582</td><td class="c">749</td><td class="c"><strong>1,331</strong> &nbsp;<span class="growth-g">+28.7%</span></td></tr>
+    <tr><td>Total DVs</td><td class="c">119</td><td class="c">113</td><td class="c"><strong>232</strong> &nbsp;<span class="growth-r">-5.0%</span></td></tr>
+    <tr><td>New Customers</td><td class="c">324</td><td class="c">446</td><td class="c"><strong>770</strong> &nbsp;<span class="growth-g">+37.7%</span></td></tr>
+    <tr><td>ND Vol -- Total</td><td class="c">578</td><td class="c">868</td><td class="c"><strong>1,446</strong> &nbsp;<span class="growth-g">+50.2%</span></td></tr>
+    <tr style="background:#f8f6ee;"><td style="padding-left:22px;color:var(--muted);">Fresh Loans</td><td class="c">468</td><td class="c">542</td><td class="c">1,010 &nbsp;<span class="growth-g">+15.8%</span></td></tr>
+    <tr><td style="padding-left:22px;color:var(--muted);">Takeover</td><td class="c">173</td><td class="c">294</td><td class="c">467 &nbsp;<span class="growth-g">+70.0%</span></td></tr>
+    <tr style="background:#f8f6ee;"><td>ND Value</td><td class="c">Rs 27.4 Cr</td><td class="c">Rs 51.4 Cr</td><td class="c"><strong>Rs 78.8 Cr</strong> &nbsp;<span class="growth-g">+87.6%</span></td></tr>
+    <tr><td>Net Addition</td><td class="c">Rs 4.5 Cr</td><td class="c">Rs 30.7 Cr</td><td class="c"><strong>Rs 35.2 Cr</strong> &nbsp;<span class="growth-g">+582%</span></td></tr>
+    <tr style="background:#f8f6ee;"><td>AUM (end of period)</td><td class="c">Rs 1,142.0 Cr</td><td class="c">Rs 1,170.2 Cr</td><td class="c"><strong>Rs 1,182.6 Cr</strong> &nbsp;<span class="growth-g">+2.5%</span></td></tr>
+  </tbody>
+</table></div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Activity Performance</div><div class="sub-label-note">| Full April &nbsp; Format: Target / Achieved (% of target)</div></div>
+<div class="tbl-wrap"><table>
+  <thead><tr>
+    <th>City</th>
+    <th class="c">Appointments<br><span style="font-weight:400;opacity:0.7;font-size:10px;">T / A (%)</span></th>
+    <th class="c">DVs<br><span style="font-weight:400;opacity:0.7;font-size:10px;">T / A (%)</span></th>
+    <th class="c">Cx Met %<br><span style="font-weight:400;opacity:0.7;font-size:10px;">T / A (%)</span></th>
+    <th class="c">A2NU% Out<br><span style="font-weight:400;opacity:0.7;font-size:10px;">T / A (%)</span></th>
+    <th class="c">A2NU% Digital<br><span style="font-weight:400;opacity:0.7;font-size:10px;">T / A (%)</span></th>
+  </tr></thead>
+  <tbody>
+    <tr><td><strong>Chennai</strong></td><td class="c"><span class="tva-t">0</span>/<span class="tva-a">1</span> <span class="pill x">NA</span></td><td class="c"><span class="tva-t">160</span>/<span class="tva-a">95</span> <span class="pill a">59%</span></td><td class="c">NA</td><td class="c">NA</td><td class="c">NA</td></tr>
+    <tr><td><strong>Bengaluru</strong></td><td class="c"><span class="tva-t">580</span>/<span class="tva-a">362</span> <span class="pill a">62%</span></td><td class="c"><span class="tva-t">128</span>/<span class="tva-a">54</span> <span class="pill r">42%</span></td><td class="c"><span class="tva-t">60%</span>/<span class="tva-a">49.4%</span> <span class="pill a">82%</span></td><td class="c"><span class="tva-t">18%</span>/<span class="tva-a">8.0%</span> <span class="pill r">44%</span></td><td class="c"><span class="tva-t">35%</span>/<span class="tva-a">9.5%</span> <span class="pill r">27%</span></td></tr>
+    <tr><td><strong>Hyderabad</strong></td><td class="c"><span class="tva-t">1,229</span>/<span class="tva-a">796</span> <span class="pill a">65%</span></td><td class="c"><span class="tva-t">106</span>/<span class="tva-a">90</span> <span class="pill g">85%</span></td><td class="c"><span class="tva-t">60%</span>/<span class="tva-a">51.0%</span> <span class="pill g">85%</span></td><td class="c"><span class="tva-t">18%</span>/<span class="tva-a">10.7%</span> <span class="pill a">59%</span></td><td class="c"><span class="tva-t">35%</span>/<span class="tva-a">8.3%</span> <span class="pill r">24%</span></td></tr>
+    <tr><td><strong>Pune</strong></td><td class="c"><span class="tva-t">375</span>/<span class="tva-a">205</span> <span class="pill a">55%</span></td><td class="c"><span class="tva-t">51</span>/<span class="tva-a">33</span> <span class="pill a">65%</span></td><td class="c"><span class="tva-t">70%</span>/<span class="tva-a">70.6%</span> <span class="pill g">101%</span></td><td class="c"><span class="tva-t">18%</span>/<span class="tva-a">11.5%</span> <span class="pill a">64%</span></td><td class="c"><span class="tva-t">45%</span>/<span class="tva-a">20.0%</span> <span class="pill r">44%</span></td></tr>
+    <tr><td><strong>Vijayawada</strong></td><td class="c"><span class="tva-t">180</span>/<span class="tva-a">62</span> <span class="pill r">34%</span></td><td class="c"><span class="tva-t">17</span>/<span class="tva-a">3</span> <span class="pill r">18%</span></td><td class="c"><span class="tva-t">60%</span>/<span class="tva-a">42.1%</span> <span class="pill a">70%</span></td><td class="c"><span class="tva-t">15%</span>/<span class="tva-a">7.5%</span> <span class="pill a">50%</span></td><td class="c"><span class="tva-t">25%</span>/<span class="tva-a">11.1%</span> <span class="pill r">44%</span></td></tr>
+    <tr><td><strong>Guntur</strong></td><td class="c"><span class="tva-t">75</span>/<span class="tva-a">28</span> <span class="pill r">37%</span></td><td class="c"><span class="tva-t">0</span>/<span class="tva-a">0</span> <span class="pill x">--</span></td><td class="c"><span class="tva-t">60%</span>/<span class="tva-a">52.9%</span> <span class="pill g">88%</span></td><td class="c"><span class="tva-t">15%</span>/<span class="tva-a">3.7%</span> <span class="pill r">25%</span></td><td class="c"><span class="tva-t">25%</span>/<span class="tva-a">14.3%</span> <span class="pill a">57%</span></td></tr>
+    <tr><td><strong>Warangal</strong></td><td class="c"><span class="tva-t">100</span>/<span class="tva-a">40</span> <span class="pill r">40%</span></td><td class="c"><span class="tva-t">0</span>/<span class="tva-a">4</span> <span class="pill x">--</span></td><td class="c"><span class="tva-t">60%</span>/<span class="tva-a">26.3%</span> <span class="pill r">44%</span></td><td class="c"><span class="tva-t">15%</span>/<span class="tva-a">5.7%</span> <span class="pill r">38%</span></td><td class="c"><span class="tva-t">25%</span>/<span class="tva-a">0.0%</span> <span class="pill r">0%</span></td></tr>
+    <tr><td><strong>Karimnagar</strong></td><td class="c"><span class="tva-t">60</span>/<span class="tva-a">29</span> <span class="pill r">48%</span></td><td class="c"><span class="tva-t">0</span>/<span class="tva-a">3</span> <span class="pill x">--</span></td><td class="c"><span class="tva-t">60%</span>/<span class="tva-a">16.0%</span> <span class="pill r">27%</span></td><td class="c"><span class="tva-t">15%</span>/<span class="tva-a">0.0%</span> <span class="pill r">0%</span></td><td class="c"><span class="tva-t">20%</span>/<span class="tva-a">0.0%</span> <span class="pill r">0%</span></td></tr>
+    <tr class="tot"><td>ORO Total</td><td class="c">2,599 / 1,523 <span style="color:#FFBE47;font-size:11px;">59%</span></td><td class="c">462 / 282 <span style="color:#FFBE47;font-size:11px;">61%</span></td><td class="c">60% / 52.1% <span style="color:#6ecb9b;font-size:11px;">87%</span></td><td class="c">17.7% / 9.8% <span style="color:#f08090;font-size:11px;">55%</span></td><td class="c">33% / 9.9% <span style="color:#f08090;font-size:11px;">30%</span></td></tr>
+  </tbody>
+</table></div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Disbursal Performance</div><div class="sub-label-note">| Full April &nbsp; Format: Target / Achieved (% of target)</div></div>
+<div class="tbl-wrap"><table>
+  <thead><tr>
+    <th>City</th>
+    <th class="c">New Cxs<br><span style="font-weight:400;opacity:0.7;font-size:10px;">T / A (%)</span></th>
+    <th class="c">ND Vol<br><span style="font-weight:400;opacity:0.7;font-size:10px;">T / A (%)</span></th>
+    <th class="c">ND Value (Rs Cr)<br><span style="font-weight:400;opacity:0.7;font-size:10px;">T / A (%)</span></th>
+    <th class="c">Net Addition (Rs Cr)<br><span style="font-weight:400;opacity:0.7;font-size:10px;">T / A (%)</span></th>
+    <th class="r">AUM (Rs Cr)</th>
+  </tr></thead>
+  <tbody>
+    <tr><td><strong>Chennai</strong></td><td class="c"><span class="tva-t">276</span>/<span class="tva-a">190</span> <span class="pill a">69%</span></td><td class="c"><span class="tva-t">500</span>/<span class="tva-a">345</span> <span class="pill a">69%</span></td><td class="c"><span class="tva-t">24.0</span>/<span class="tva-a">13.2</span> <span class="pill a">55%</span></td><td class="c"><span class="tva-t">16.3</span>/<span class="tva-a">7.3</span> <span class="pill r">45%</span></td><td class="r">176.6</td></tr>
+    <tr><td><strong>Bengaluru</strong></td><td class="c"><span class="tva-t">349</span>/<span class="tva-a">184</span> <span class="pill a">53%</span></td><td class="c"><span class="tva-t">674</span>/<span class="tva-a">354</span> <span class="pill a">53%</span></td><td class="c"><span class="tva-t">33.7</span>/<span class="tva-a">19.3</span> <span class="pill a">57%</span></td><td class="c"><span class="tva-t">22.9</span>/<span class="tva-a">6.2</span> <span class="pill r">27%</span></td><td class="r">230.4</td></tr>
+    <tr><td><strong>Hyderabad</strong></td><td class="c"><span class="tva-t">598</span>/<span class="tva-a">315</span> <span class="pill a">53%</span></td><td class="c"><span class="tva-t">1,182</span>/<span class="tva-a">605</span> <span class="pill a">51%</span></td><td class="c"><span class="tva-t">78.0</span>/<span class="tva-a">37.4</span> <span class="pill r">48%</span></td><td class="c"><span class="tva-t">53.0</span>/<span class="tva-a">20.6</span> <span class="pill r">39%</span></td><td class="r">531.2</td></tr>
+    <tr><td><strong>Pune</strong></td><td class="c"><span class="tva-t">231</span>/<span class="tva-a">146</span> <span class="pill a">63%</span></td><td class="c"><span class="tva-t">438</span>/<span class="tva-a">289</span> <span class="pill a">66%</span></td><td class="c"><span class="tva-t">18.4</span>/<span class="tva-a">12.8</span> <span class="pill a">69%</span></td><td class="c"><span class="tva-t">12.5</span>/<span class="tva-a">2.1</span> <span class="pill r">17%</span></td><td class="r">137.4</td></tr>
+    <tr><td><strong>Vijayawada</strong></td><td class="c"><span class="tva-t">84</span>/<span class="tva-a">30</span> <span class="pill r">36%</span></td><td class="c"><span class="tva-t">141</span>/<span class="tva-a">68</span> <span class="pill r">48%</span></td><td class="c"><span class="tva-t">11.3</span>/<span class="tva-a">6.7</span> <span class="pill a">59%</span></td><td class="c"><span class="tva-t">5.7</span>/<span class="tva-a">4.2</span> <span class="pill a">74%</span></td><td class="r">64.0</td></tr>
+    <tr><td><strong>Guntur</strong></td><td class="c"><span class="tva-t">60</span>/<span class="tva-a">7</span> <span class="pill r">12%</span></td><td class="c"><span class="tva-t">72</span>/<span class="tva-a">11</span> <span class="pill r">15%</span></td><td class="c"><span class="tva-t">5.9</span>/<span class="tva-a">0.7</span> <span class="pill r">12%</span></td><td class="c"><span class="tva-t">5.3</span>/<span class="tva-a">0.1</span> <span class="pill r">3%</span></td><td class="r">13.2</td></tr>
+    <tr><td><strong>Warangal</strong></td><td class="c"><span class="tva-t">79</span>/<span class="tva-a">25</span> <span class="pill r">32%</span></td><td class="c"><span class="tva-t">96</span>/<span class="tva-a">37</span> <span class="pill r">39%</span></td><td class="c"><span class="tva-t">5.4</span>/<span class="tva-a">2.3</span> <span class="pill r">43%</span></td><td class="c"><span class="tva-t">4.8</span>/<span class="tva-a">2.1</span> <span class="pill r">44%</span></td><td class="r">16.9</td></tr>
+    <tr><td><strong>Karimnagar</strong></td><td class="c"><span class="tva-t">66</span>/<span class="tva-a">37</span> <span class="pill a">56%</span></td><td class="c"><span class="tva-t">80</span>/<span class="tva-a">52</span> <span class="pill a">65%</span></td><td class="c"><span class="tva-t">4.4</span>/<span class="tva-a">2.2</span> <span class="pill a">51%</span></td><td class="c"><span class="tva-t">4.0</span>/<span class="tva-a">1.9</span> <span class="pill a">53%</span></td><td class="r">12.6</td></tr>
+    <tr class="tot"><td>ORO Total</td><td class="c">1,743 / 934 <span style="color:#f08090;font-size:11px;">54%</span></td><td class="c">3,183 / 1,761 <span style="color:#f08090;font-size:11px;">55%</span></td><td class="c">181.1 / 94.6 <span style="color:#f08090;font-size:11px;">52%</span></td><td class="c">124.6 / 44.5 <span style="color:#f08090;font-size:11px;">36%</span></td><td class="r">1,182.6</td></tr>
+  </tbody>
+</table></div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">AUM by Territory</div><div class="sub-label-note">| April 2026 (Rs Cr)</div></div>
+<div class="aum-city-wrap">
+  <div class="aum-city-name">Chennai</div>
+  <div class="aum-tiles">
+    <div class="aum-tile"><div class="aum-tile-name">Ambattur</div><div class="aum-tile-val">19.64</div></div>
+    <div class="aum-tile"><div class="aum-tile-name">Perambur</div><div class="aum-tile-val">25.94</div></div>
+    <div class="aum-tile"><div class="aum-tile-name">Chennai</div><div class="aum-tile-val">131.27</div></div>
+    <div class="aum-tile total"><div class="aum-tile-name">Chennai Total</div><div class="aum-tile-val">176.84</div></div>
+  </div>
+</div>
+<div class="aum-city-wrap">
+  <div class="aum-city-name">Bangalore</div>
+  <div class="aum-tiles">
+    <div class="aum-tile"><div class="aum-tile-name">Blr -- North</div><div class="aum-tile-val">104.50</div></div>
+    <div class="aum-tile"><div class="aum-tile-name">Blr -- South</div><div class="aum-tile-val">125.95</div></div>
+    <div class="aum-tile total"><div class="aum-tile-name">Bangalore Total</div><div class="aum-tile-val">230.45</div></div>
+  </div>
+</div>
+<div class="aum-city-wrap">
+  <div class="aum-city-name">AP &amp; Telangana</div>
+  <div class="aum-tiles">
+    <div class="aum-tile"><div class="aum-tile-name">Hyd -- West</div><div class="aum-tile-val">178.20</div></div>
+    <div class="aum-tile"><div class="aum-tile-name">Hyd -- East</div><div class="aum-tile-val">188.68</div></div>
+    <div class="aum-tile"><div class="aum-tile-name">Hyd -- Central</div><div class="aum-tile-val">164.32</div></div>
+    <div class="aum-tile total"><div class="aum-tile-name">Hyderabad Total</div><div class="aum-tile-val">531.20</div></div>
+    <div class="aum-tile"><div class="aum-tile-name">Vijayawada</div><div class="aum-tile-val">63.98</div></div>
+    <div class="aum-tile"><div class="aum-tile-name">Guntur</div><div class="aum-tile-val">13.24</div></div>
+    <div class="aum-tile"><div class="aum-tile-name">Warangal</div><div class="aum-tile-val">16.87</div></div>
+    <div class="aum-tile"><div class="aum-tile-name">Karimnagar</div><div class="aum-tile-val">12.61</div></div>
+    <div class="aum-tile total"><div class="aum-tile-name">AP &amp; TS Total</div><div class="aum-tile-val">637.89</div></div>
+  </div>
+</div>
+<div class="aum-city-wrap">
+  <div class="aum-city-name">Pune</div>
+  <div class="aum-tiles">
+    <div class="aum-tile"><div class="aum-tile-name">PMC</div><div class="aum-tile-val">73.98</div></div>
+    <div class="aum-tile"><div class="aum-tile-name">PCMC</div><div class="aum-tile-val">63.44</div></div>
+    <div class="aum-tile total"><div class="aum-tile-name">Pune Total</div><div class="aum-tile-val">137.41</div></div>
+    <div class="aum-tile grand"><div class="aum-tile-name">ORO AUM Total</div><div class="aum-tile-val">1,182.6 Cr</div></div>
+  </div>
+</div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Key Highlights</div></div>
+<div class="hl-grid">
+  <div class="hl-box good">
+    <div class="hl-title">&#10003; What Worked Well</div>
+    <ul>
+      <li>Second half recovery: Apr 13-28 delivered Rs 51.4 Cr ND vs Rs 27.4 Cr in the first half -- nearly double.</li>
+      <li>Takeover recovered from Rs 1.2 Cr (Wk 14) to Rs 11-12 Cr in Wks 15-17. Bouncing back, though still a long way to go on target.</li>
+      <li>AUM crossed Rs 1,182 Cr with consistent week-on-week growth across all 4 weeks.</li>
+      <li>Hyderabad: although appointment count was lower than target, DVs closed at 85% -- strong conversion from visit to loan.</li>
+      <li>Chennai DV conversion at 72.3% vs 70.6% target -- the only city to beat the DV conversion target.</li>
+      <li>Week 16 was our best week: Rs 30.2 Cr ND, 481 loans, 1.70% AUM growth.</li>
+    </ul>
+  </div>
+  <div class="hl-box bad">
+    <div class="hl-title">&#9651; Needs Improvement</div>
+    <ul>
+      <li>Monthly ND at 52%: Rs 94.6 Cr vs Rs 181.1 Cr target. External factors -- gold rate movements, bank holidays -- hurt the start of the month.</li>
+      <li>Net addition at 36%: Rs 44.5 Cr vs Rs 124.6 Cr target. Lower Takeover volumes and renewals being suppressed in the first week were the main drivers.</li>
+      <li>New cities remain fragile. Working on leveraging digital and locally sourced leads across Vijayawada, Warangal, and Guntur.</li>
+      <li>Bengaluru needs to improve conversions across the board. Sales team to be more proactive in meeting customers and raising visits.</li>
+      <li>Guntur had a really tough month due to people constraints -- urgent fix required.</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 2 -- WoW ===== -->
+<div class="section">
+<div id="s2" class="section-head"><div class="section-num">2</div><div class="section-title">Week-on-Week Performance</div></div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">City-wise ND Volume</div><div class="sub-label-note">| Weeks 14-17</div></div>
+<div class="tbl-wrap"><table>
+  <thead><tr>
+    <th>City</th>
+    <th class="r">W14 Vol<br><span style="font-weight:400;opacity:0.7;font-size:10px;">(4d)</span></th><th class="r">W14 Val</th>
+    <th class="r">W15 Vol<br><span style="font-weight:400;opacity:0.7;font-size:10px;">(5d)</span></th><th class="r">W15 Val</th>
+    <th class="r">W16 Vol<br><span style="font-weight:400;opacity:0.7;font-size:10px;">(5d)</span></th><th class="r">W16 Val</th>
+    <th class="r">W17 Vol<br><span style="font-weight:400;opacity:0.7;font-size:10px;">(5d)</span></th><th class="r">W17 Val</th>
+    <th class="r">W18 Vol<br><span style="font-weight:400;opacity:0.7;font-size:10px;">(5d)</span></th><th class="r">W18 Val</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>Chennai</td><td class="r">56</td><td class="r">Rs 2.3</td><td class="r">87</td><td class="r">Rs 2.7</td><td class="r">94</td><td class="r">Rs 4.8</td><td class="r">67</td><td class="r">Rs 2.2</td><td class="r">71</td><td class="r">Rs 2.4</td></tr>
+    <tr><td>Bengaluru</td><td class="r">49</td><td class="r">Rs 1.1</td><td class="r">84</td><td class="r">Rs 3.7</td><td class="r">99</td><td class="r">Rs 7.3</td><td class="r">76</td><td class="r">Rs 3.8</td><td class="r">78</td><td class="r">Rs 4.2</td></tr>
+    <tr><td>Hyderabad</td><td class="r">92</td><td class="r">Rs 4.4</td><td class="r">160</td><td class="r">Rs 9.8</td><td class="r">159</td><td class="r">Rs 10.7</td><td class="r">134</td><td class="r">Rs 8.8</td><td class="r">131</td><td class="r">Rs 7.3</td></tr>
+    <tr><td>Pune</td><td class="r">36</td><td class="r">Rs 1.6</td><td class="r">59</td><td class="r">Rs 2.4</td><td class="r">79</td><td class="r">Rs 3.9</td><td class="r">73</td><td class="r">Rs 3.5</td><td class="r">64</td><td class="r">Rs 2.2</td></tr>
+    <tr><td>Vijayawada</td><td class="r">3</td><td class="r">Rs 0.4</td><td class="r">12</td><td class="r">Rs 1.4</td><td class="r">19</td><td class="r">Rs 2.2</td><td class="r">14</td><td class="r">Rs 1.3</td><td class="r">25</td><td class="r">Rs 1.5</td></tr>
+    <tr><td>Guntur</td><td class="r">0</td><td class="r">Rs 0.0</td><td class="r">3</td><td class="r">Rs 0.2</td><td class="r">5</td><td class="r">Rs 0.2</td><td class="r">1</td><td class="r">Rs 0.0</td><td class="r">2</td><td class="r">Rs 0.3</td></tr>
+    <tr><td>Warangal</td><td class="r">5</td><td class="r">Rs 0.3</td><td class="r">12</td><td class="r">Rs 0.5</td><td class="r">13</td><td class="r">Rs 0.5</td><td class="r">4</td><td class="r">Rs 0.5</td><td class="r">7</td><td class="r">Rs 0.7</td></tr>
+    <tr><td>Karimnagar</td><td class="r">2</td><td class="r">Rs 0.0</td><td class="r">11</td><td class="r">Rs 0.3</td><td class="r">13</td><td class="r">Rs 0.5</td><td class="r">16</td><td class="r">Rs 0.9</td><td class="r">12</td><td class="r">Rs 0.5</td></tr>
+    <tr class="tot"><td>ORO</td><td class="r">243</td><td class="r">Rs 10.1</td><td class="r">428</td><td class="r">Rs 20.9</td><td class="r">481</td><td class="r">Rs 30.2</td><td class="r">385</td><td class="r">Rs 21.2</td><td class="r">390</td><td class="r">Rs 19.0</td></tr>
+  </tbody>
+</table></div>
+
+<!-- WoW Charts -- flex column layout prevents any overlap -->
+<div class="chart-2col">
+  <div class="chart-card">
+    <div class="chart-card-title">ND Volume -- Week on Week</div>
+    <div class="chart-card-note">W14 = 4 working days total (2 Mar + 2 Apr -- Apr 1 bank holiday, Apr 3 Good Friday) &nbsp;|&nbsp; W18 = 5 days (4 Apr + 1 May) &nbsp;|&nbsp; Run rate per day shown on each bar</div>
+    <div class="chart-canvas-wrap"><canvas id="cWoWVol"></canvas></div>
+    <div class="chart-insight">W16 was the standout week at 96 loans/day. W14 spanned 4 working days across March and April. W18 closed at 78 loans/day -- a strong finish to the month.</div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-card-title">ND Volume -- Fresh vs Takeover by Week</div>
+    <div class="chart-card-note">W14=4d, W15=5d, W16=5d, W17=5d, W18=5d (4 Apr + 1 May)</div>
+    <div class="chart-legend">
+      <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#1A3F6F"></div>Fresh</div>
+      <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#FFBE47"></div>Takeover</div>
+    </div>
+    <div class="chart-canvas-wrap"><canvas id="cWoWMix"></canvas></div>
+    <div class="chart-insight">Takeover recovered from 21 loans in W14 to 162 in W16. Mix shift toward Takeover drove higher avg loan values in Wks 15-17.</div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-card-title">New Customers -- Week on Week</div>
+    <div class="chart-card-note">Run rate per day shown on each bar</div>
+    <div class="chart-canvas-wrap"><canvas id="cWoWCx"></canvas></div>
+    <div class="chart-insight">W16 new customers dipped as Takeover from existing customers grew. W15 had the highest new cx ratio at 60%. W18 recovered to 200 new customers (51% of ND Vol).</div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-card-title">New Cx as % of ND Volume -- by Week</div>
+    <div class="chart-card-note">Higher % = more fresh acquisition per loan disbursed</div>
+    <div class="chart-canvas-wrap"><canvas id="cWoWCxPct"></canvas></div>
+    <div class="chart-insight">W16 dropped to 53% as Takeover from existing customers grew. W18 holds at 51% -- healthy fresh acquisition mix.</div>
+  </div>
+</div>
+
+<div class="chart-1col">
+  <div class="chart-card">
+    <div class="chart-card-title">City-wise ND Volume -- Week on Week (W14-W17)</div>
+    <div class="chart-legend">
+      <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#BDBDBD"></div>W14 (4d)</div>
+      <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#4A5568"></div>W15 (5d)</div>
+      <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#FFBE47"></div>W16 (5d)</div>
+      <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#C8920A"></div>W17 (5d)</div>
+    </div>
+    <div class="chart-canvas-wrap tall"><canvas id="cCityND"></canvas></div>
+  </div>
+</div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Month-on-Month Summary</div><div class="sub-label-note">| ORO Consolidated -- Jan to Apr 2026</div></div>
+<div class="chart-2col">
+  <div class="chart-card">
+    <div class="chart-card-title">ND Volume -- Monthly</div>
+    <div class="chart-canvas-wrap"><canvas id="cMoMVol"></canvas></div>
+    <div class="chart-insight">Volume peaked at 2,757 in Feb. April came in at 1,761 -- down 22.8% vs March.</div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-card-title">ND Vol -- Fresh vs Takeover Monthly</div>
+    <div class="chart-legend">
+      <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#1A3F6F"></div>Fresh</div>
+      <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#FFBE47"></div>Takeover</div>
+    </div>
+    <div class="chart-canvas-wrap"><canvas id="cMoMMix"></canvas></div>
+    <div class="chart-insight">Takeover collapsed from 1,359 in Feb to 549 in Apr (-60%). Takeover recovery is the key lever for May.</div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-card-title">New Customers -- Monthly</div>
+    <div class="chart-canvas-wrap"><canvas id="cMoMCx"></canvas></div>
+    <div class="chart-insight">New customer acquisition peaked at 1,451 in Feb. April at 934 is the lowest in 4 months.</div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-card-title">AUM (Rs Cr) -- Monthly</div>
+    <div class="chart-canvas-wrap"><canvas id="cMoMAUM"></canvas></div>
+    <div class="chart-insight">AUM grew from Rs 898.5 Cr in Jan to Rs 1,182.6 Cr in Apr -- a 31.6% rise in 4 months.</div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 3 -- INITIATIVES ===== -->
+<div class="section">
+<div id="s3" class="section-head"><div class="section-num">3</div><div class="section-title">New Initiatives and Pilots</div></div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Bot Summary</div><div class="sub-label-note">| April 2026</div></div>
+<div class="bot-tile-row">
+  <div class="bot-tile"><div class="bot-tile-name">Total Assigned</div><div class="bot-tile-val">11.4 L</div><div class="bot-tile-sub">Blr: 3.8L &nbsp;|&nbsp; Hyd: 5.0L &nbsp;|&nbsp; Pune: 2.6L</div></div>
+  <div class="bot-tile"><div class="bot-tile-name">Connected</div><div class="bot-tile-val">4.02 L</div><div class="bot-tile-sub">Connect rate: 35.2%</div></div>
+  <div class="bot-tile"><div class="bot-tile-name">Appointments + DVs</div><div class="bot-tile-val">766</div><div class="bot-tile-sub">CL2A: 0.19% &nbsp;|&nbsp; CCL2A: 6.0%</div></div>
+  <div class="bot-tile"><div class="bot-tile-name">Total Loans</div><div class="bot-tile-val">58</div><div class="bot-tile-sub">Rs 3.92 Cr loan amount</div></div>
+  <div class="bot-tile"><div class="bot-tile-name">Cost / Appointment</div><div class="bot-tile-val">Rs 2,023</div><div class="bot-tile-sub">Best: Hyd at Rs 1,533</div></div>
+  <div class="bot-tile"><div class="bot-tile-name">Cost / Connected</div><div class="bot-tile-val">Rs 121</div><div class="bot-tile-sub">Best: Pune at Rs 104</div></div>
+  <div class="bot-tile"><div class="bot-tile-name">Total Cost</div><div class="bot-tile-val">Rs 15.5 L</div><div class="bot-tile-sub">Caller + call costs</div></div>
+  <div class="bot-tile"><div class="bot-tile-name">Abandoned Calls</div><div class="bot-tile-val">23,301</div><div class="bot-tile-sub">A2C abandon rate: 2.04%</div></div>
+</div>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Metric</th><th class="r">Bengaluru</th><th class="r">Hyderabad</th><th class="r">Pune</th><th class="r">Total</th></tr></thead>
+  <tbody>
+    <tr><td>Assigned</td><td class="r">3,82,946</td><td class="r">5,04,740</td><td class="r">2,55,073</td><td class="r"><strong>11,42,759</strong></td></tr>
+    <tr><td>Connected</td><td class="r">1,24,850</td><td class="r">1,92,198</td><td class="r">85,156</td><td class="r"><strong>4,02,204</strong></td></tr>
+    <tr><td>Connected %</td><td class="r">32.60%</td><td class="r">38.08%</td><td class="r">33.38%</td><td class="r"><strong>35.20%</strong></td></tr>
+    <tr><td>Connected to Caller</td><td class="r">3,464</td><td class="r">6,075</td><td class="r">3,229</td><td class="r"><strong>12,769</strong></td></tr>
+    <tr><td>Abandoned</td><td class="r">8,036</td><td class="r">10,185</td><td class="r">5,080</td><td class="r"><strong>23,301</strong></td></tr>
+    <tr><td>Appts + DVs</td><td class="r">166</td><td class="r">481</td><td class="r">119</td><td class="r"><strong>766</strong></td></tr>
+    <tr><td>CCL2A</td><td class="r">4.79%</td><td class="r">7.92%</td><td class="r">3.69%</td><td class="r"><strong>6.00%</strong></td></tr>
+    <tr><td>Total Loans</td><td class="r">15</td><td class="r">39</td><td class="r">4</td><td class="r"><strong>58</strong></td></tr>
+    <tr><td>Loan Amount (Rs)</td><td class="r">82,52,583</td><td class="r">2,97,91,432</td><td class="r">11,85,700</td><td class="r"><strong>3,92,29,715</strong></td></tr>
+    <tr><td>Cost per Appt (Rs)</td><td class="r">2,864</td><td class="r">1,533</td><td class="r">2,830</td><td class="r"><strong>2,023</strong></td></tr>
+    <tr><td>Total Cost (Rs)</td><td class="r">4,75,470</td><td class="r">7,37,283</td><td class="r">3,36,768</td><td class="r"><strong>15,49,520</strong></td></tr>
+  </tbody>
+</table></div>
+
+<div class="hl-grid">
+  <div class="hl-box good">
+    <div class="hl-title">&#10003; What Worked Well -- Bot</div>
+    <ul>
+      <li>Hyderabad leads on connect rate (38.1%) and generated 481 appointments.</li>
+      <li>Hyderabad cost per appointment at Rs 1,533 -- best efficiency across all cities.</li>
+      <li>Pune has the lowest cost per connected caller at Rs 104.</li>
+      <li>58 loans totalling Rs 3.92 Cr generated from the bot channel -- strong ROI signal.</li>
+    </ul>
+  </div>
+  <div class="hl-box bad">
+    <div class="hl-title">&#9651; Needs Improvement -- Bot</div>
+    <ul>
+      <li>Bengaluru connect rate at 32.6% -- lowest among cities, cost per appointment at Rs 2,864.</li>
+      <li>Pune converted only 4 loans from 119 appointments. Funnel leaking after the call.</li>
+      <li>CCL2A at 6% overall -- big drop-off between connected and booked appointment.</li>
+      <li>23,301 calls abandoned -- IVR flow review needed to recover some of these.</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 4 -- SUPPORT ===== -->
+<div class="section">
+<div id="s4" class="section-head"><div class="section-num">4</div><div class="section-title">Support</div></div>
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Agent Performance</div><div class="sub-label-note">| Apr 1 to 30, 2026</div></div>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Caller Name</th><th class="r">Working Days</th><th class="r">Total Calls</th><th class="r">Avg Calls/Day</th><th class="r">Avg Talktime</th><th class="r">Avg Device On</th><th class="r">Tickets Assigned</th><th class="r">In Followup</th><th class="r">Tickets/Day</th></tr></thead>
+  <tbody>
+    <tr><td>Meenakshi Srinivasan</td><td class="r">21.5</td><td class="r">1,871</td><td class="r">87</td><td class="r">1:40:32</td><td class="r">6:45:13</td><td class="r">73</td><td class="r">0</td><td class="r">3</td></tr>
+    <tr><td>Merlin Jayanisha P</td><td class="r">21</td><td class="r">2,126</td><td class="r">101</td><td class="r">2:08:36</td><td class="r">6:26:07</td><td class="r">32</td><td class="r">0</td><td class="r">2</td></tr>
+    <tr><td>Jhansi Rani D</td><td class="r">20.5</td><td class="r">2,122</td><td class="r">104</td><td class="r">1:51:39</td><td class="r">6:44:14</td><td class="r">19</td><td class="r">0</td><td class="r">1</td></tr>
+    <tr><td>Gulsan Patra</td><td class="r">22</td><td class="r">1,931</td><td class="r">88</td><td class="r">2:02:55</td><td class="r">6:53:02</td><td class="r">48</td><td class="r">0</td><td class="r">2</td></tr>
+    <tr><td>Aqub (Orocorp)</td><td class="r">22.5</td><td class="r">2,444</td><td class="r">109</td><td class="r">1:57:18</td><td class="r">6:42:04</td><td class="r">65</td><td class="r">0</td><td class="r">3</td></tr>
+    <tr><td>Aslam (Orocorp)</td><td class="r">24</td><td class="r">2,292</td><td class="r">96</td><td class="r">2:25:24</td><td class="r">6:31:35</td><td class="r">35</td><td class="r">0</td><td class="r">1</td></tr>
+    <tr><td>Abubakker Siddiq</td><td class="r">11.5</td><td class="r">873</td><td class="r">76</td><td class="r">1:37:47</td><td class="r">6:27:53</td><td class="r">35</td><td class="r">0</td><td class="r">3</td></tr>
+    <tr><td>Sai Sree PN</td><td class="r">22</td><td class="r">1,503</td><td class="r">68</td><td class="r">1:53:24</td><td class="r">5:25:43</td><td class="r">35</td><td class="r">0</td><td class="r">2</td></tr>
+    <tr><td>Bala Subramaniyam</td><td class="r">25</td><td class="r">1,664</td><td class="r">67</td><td class="r">1:21:01</td><td class="r">5:37:53</td><td class="r">35</td><td class="r">0</td><td class="r">1</td></tr>
+    <tr class="tot"><td>Total / Average</td><td class="r">20</td><td class="r">13,659</td><td class="r">94</td><td class="r">1:57:44</td><td class="r">6:38:36</td><td class="r">307</td><td class="r">0</td><td class="r">2</td></tr>
+  </tbody>
+</table></div>
+<div class="note-box">9 agents handled 13,659 calls across the full month (avg 94 calls/day). Aqub leads on volume at 2,444 calls (109/day). Aslam had the longest avg talk time at 2:25. Zero tickets in followup backlog heading into May.</div>
+</div>
+
+<!-- ===== SECTION 5 -- PEOPLE ===== -->
+<div class="section">
+<div id="s5" class="section-head"><div class="section-num">5</div><div class="section-title">People</div></div>
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Hiring -- Quarterly Target vs Achievement</div></div>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Team</th><th class="r">Quarterly Target</th><th class="r">Hired (Apr)</th><th class="c">Achievement</th><th>Comments</th></tr></thead>
+  <tbody>
+    <tr><td>Tele-calling</td><td class="r">9</td><td class="r">0</td><td class="c"><span class="pill r">0.00%</span></td><td></td></tr>
+    <tr><td>Support</td><td class="r">7</td><td class="r">2</td><td class="c"><span class="pill r">28.57%</span></td><td></td></tr>
+    <tr><td>Chennai City</td><td class="r">23</td><td class="r">2</td><td class="c"><span class="pill r">8.70%</span></td><td>Undergoing training</td></tr>
+    <tr><td>Bangalore City</td><td class="r">25</td><td class="r">2</td><td class="c"><span class="pill r">8.00%</span></td><td></td></tr>
+    <tr><td>Pune City</td><td class="r">12</td><td class="r">0</td><td class="c"><span class="pill r">0.00%</span></td><td></td></tr>
+    <tr><td>Hyderabad</td><td class="r">25</td><td class="r">8</td><td class="c"><span class="pill r">32.00%</span></td><td></td></tr>
+    <tr><td>Vijayawada</td><td class="r">4</td><td class="r">4</td><td class="c"><span class="pill g">100.00%</span></td><td></td></tr>
+    <tr><td>Guntur</td><td class="r">9</td><td class="r">3</td><td class="c"><span class="pill r">33.33%</span></td><td></td></tr>
+    <tr><td>Warangal</td><td class="r">3</td><td class="r">1</td><td class="c"><span class="pill r">33.33%</span></td><td></td></tr>
+    <tr><td>Karimnagar</td><td class="r">0</td><td class="r">0</td><td class="c"><span class="pill x">--</span></td><td></td></tr>
+    <tr><td>Central Team</td><td class="r">1</td><td class="r">1</td><td class="c"><span class="pill g">100.00%</span></td><td>Performance marketing</td></tr>
+    <tr class="tot"><td>Total</td><td class="r">118</td><td class="r">23</td><td class="c">19.49%</td><td></td></tr>
+  </tbody>
+</table></div>
+<div class="note-box">19.49% of quarterly target hired (23 of 118). Vijayawada and Central Team hit 100%. Hyderabad leads on volume (8 hires). Critical gaps in Tele-calling, Pune, and Guntur. <strong>Biggest blocker: finding Kannada speakers for telecalling and support.</strong></div>
+</div>
+
+<!-- ===== SECTION 6 -- EXPANSION ===== -->
+<div class="section">
+<div id="s6" class="section-head"><div class="section-num">6</div><div class="section-title">Expansion</div></div>
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Cluster Office Network</div><div class="sub-label-note">| 26 of 60 COs open</div></div>
+<div class="co-grid">
+  <div class="co-card"><div class="co-card-head">Chennai</div><div class="co-card-body"><div class="co-terr">Chn -- North</div><div class="co-item">Perambur</div><div class="co-item">Ambattur</div><div class="co-terr">Chn -- South</div><div class="co-item progress">In Progress</div><div class="co-item" style="font-size:11px;color:var(--amber);padding-left:9px;">Porur -- location confirmed</div></div></div>
+  <div class="co-card"><div class="co-card-head">Bangalore</div><div class="co-card-body"><div class="co-terr">Blr -- North</div><div class="co-item progress">In Progress</div><div class="co-terr">Blr -- South</div><div class="co-item">JP Nagar</div><div class="co-item">Banashankari</div></div></div>
+  <div class="co-card"><div class="co-card-head">Hyderabad East</div><div class="co-card-body"><div class="co-item">ECIL</div><div class="co-item">Kharmanghat</div><div class="co-item">Malkajgiri</div><div class="co-item">Uppal</div><div class="co-item">Vanasthalipuram</div><div class="co-item">TCPL -- Nacharam</div></div></div>
+  <div class="co-card"><div class="co-card-head">Hyderabad West</div><div class="co-card-body"><div class="co-item">KPHB</div><div class="co-item">Madhapur</div><div class="co-item">Manikonda</div><div class="co-item">Miyapur</div></div></div>
+  <div class="co-card"><div class="co-card-head">Hyderabad Central</div><div class="co-card-body"><div class="co-item">Bowenpally</div><div class="co-item">Himayathnagar</div><div class="co-item">Mehidpatnam</div><div class="co-item">Punjagutta</div><div class="co-item">Secundrabad</div></div></div>
+  <div class="co-card"><div class="co-card-head">Pune</div><div class="co-card-body"><div class="co-terr">PMC</div><div class="co-item">Shivajinagar</div><div class="co-terr">PCMC</div><div class="co-item">Pimpri Chinchwad</div></div></div>
+  <div class="co-card"><div class="co-card-head">Vijayawada</div><div class="co-card-body"><div class="co-item">Patamatta</div><div class="co-item">SN Puram</div></div></div>
+  <div class="co-card"><div class="co-card-head">Tier-2 Cities</div><div class="co-card-body"><div class="co-terr">Guntur</div><div class="co-item">Guntur</div><div class="co-terr">Warangal</div><div class="co-item">Warangal</div><div class="co-terr">Karimnagar</div><div class="co-item">Karimnagar</div></div></div>
+</div>
+<ul class="co-bullets">
+  <li>Goal: 60 Cluster Offices by end of March 2027. Currently at 26 COs.</li>
+  <li>Next focus: Bangalore North and Chennai South (Porur confirmed) -- to be opened over the coming months as soon as ATMs are ready.</li>
+  <li>Also exploring options to open more TCPL branches in Hyderabad where OTPL and TCPL can operate side by side.</li>
+</ul>
+</div>
+
+<!-- ===== SECTION 7 -- AUDIT ===== -->
+<div class="section">
+<div id="s7" class="section-head"><div class="section-num">7</div><div class="section-title">Audit</div></div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Process Audit Summary</div><div class="sub-label-note">| March vs April</div></div>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Audit Type</th><th class="r">Mar Audits</th><th class="r">Apr Audits</th><th class="r">Mar Success</th><th class="r">Apr Success</th><th class="c">Mar Rate</th><th class="c">Apr Rate</th></tr></thead>
+  <tbody>
+    <tr><td>Kit Bag Audit</td><td class="r">142</td><td class="r">190</td><td class="r">133</td><td class="r">172</td><td class="c"><span class="pill g">93.66%</span></td><td class="c"><span class="pill g">90.53%</span></td></tr>
+    <tr><td>Process Audit -- Fresh</td><td class="r">86</td><td class="r">101</td><td class="r">84</td><td class="r">95</td><td class="c"><span class="pill g">97.67%</span></td><td class="c"><span class="pill g">94.06%</span></td></tr>
+    <tr><td>Process Audit -- TO</td><td class="r">55</td><td class="r">64</td><td class="r">54</td><td class="r">58</td><td class="c"><span class="pill g">98.18%</span></td><td class="c"><span class="pill g">90.63%</span></td></tr>
+    <tr><td>Process Audit -- Part Rel.</td><td class="r">9</td><td class="r">9</td><td class="r">9</td><td class="r">8</td><td class="c"><span class="pill g">100.00%</span></td><td class="c"><span class="pill g">88.89%</span></td></tr>
+    <tr><td>Process Audit -- Release</td><td class="r">60</td><td class="r">74</td><td class="r">57</td><td class="r">71</td><td class="c"><span class="pill g">95.00%</span></td><td class="c"><span class="pill g">95.95%</span></td></tr>
+    <tr class="tot"><td>Total</td><td class="r">210</td><td class="r">248</td><td class="r">204</td><td class="r">232</td><td class="c">97.14%</td><td class="c">93.55%</td></tr>
+  </tbody>
+</table></div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Gold Audit Summary</div><div class="sub-label-note">| March vs April</div></div>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Audit Type</th><th class="r">Mar Packets</th><th class="r">Apr Packets</th><th class="c">Mar Major Dev</th><th class="c">Apr Major Dev</th><th class="c">Mar Soft Rec</th><th class="c">Apr Soft Rec</th></tr></thead>
+  <tbody>
+    <tr><td>Oro Gold Audit</td><td class="r">149</td><td class="r">170</td><td class="c"><span class="pill g">0</span></td><td class="c"><span class="pill g">0</span></td><td class="c"><span class="pill g">0</span></td><td class="c"><span class="pill g">0</span></td></tr>
+    <tr><td>TCPL Gold Audit</td><td class="r">31</td><td class="r">17</td><td class="c"><span class="pill a">1</span></td><td class="c"><span class="pill g">0</span></td><td class="c"><span class="pill a">2</span></td><td class="c"><span class="pill a">1</span></td></tr>
+  </tbody>
+</table></div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Audit Action Log</div></div>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Activity / Audit</th><th>Update / Action Point</th><th class="c">Category</th><th class="c">Required</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Kit Audit Adherence</strong></td><td>Accuracy decreased 3.13% from Mar (93.66%). Points of drop need reverification.</td><td class="c"><span class="tag">Internal Audit</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>Process Audit</strong></td><td>Accuracy decreased 3.59% from Mar (97.14%).</td><td class="c"><span class="tag">Internal Audit</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>Oro Gold Audit</strong></td><td>No major deviations reported.</td><td class="c"><span class="tag">Internal Audit</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>Tenmark Gold Audit</strong></td><td>1 soft recovery in Apr 2026. March recovery case still pending.</td><td class="c"><span class="tag">Internal Audit</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>AP Calibration</strong></td><td>AMJ quarter planned and will be completed before June 2026.</td><td class="c"><span class="tag">Internal Audit</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>Tenmark Internal Audit</strong></td><td>Apr 2026 audit completed, reports shared.</td><td class="c"><span class="tag">Internal Audit</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>Tenmarks APS</strong></td><td>Implemented.</td><td class="c"><span class="tag">Internal Audit</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>Prestasi &amp; SFL Verification</strong></td><td>Verification and status updates planned every Saturday.</td><td class="c"><span class="tag">Internal Audit</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>Tenmark &amp; Oro Systematic Audit</strong></td><td>Under discussion with Tech Team.</td><td class="c"><span class="tag">Internal Audit</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>Cluster Office Audit</strong></td><td>Hyderabad, Bangalore and Vijayawada completed, reports shared. Frequency: every two months.</td><td class="c"><span class="tag">Internal Audit</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>New AP Appraisal Training</strong></td><td>Every batch, all cities, per new training module.</td><td class="c"><span class="tag">Training</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>Federal Auctions</strong></td><td>SL collected details updated.</td><td class="c"><span class="tag">Auction</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>Collateral Pending Auction</strong></td><td>Buyer inspections complete for all cities. Final sale approval under discussion.</td><td class="c"><span class="tag">Auction / Private Sale</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>GBS at Branch Level</strong></td><td>Experimental version being tested in Hyderabad cluster offices.</td><td class="c"><span class="tag">GBS</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>Closure Friction Document</strong></td><td>Under discussion with Ops and Central.</td><td class="c"><span class="tag">Operations</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+    <tr><td><strong>Private Sale New Declaration</strong></td><td>Under discussion with SRL.</td><td class="c"><span class="tag">Private Sale</span></td><td class="c"><span class="tag-true">TRUE</span></td></tr>
+  </tbody>
+</table></div>
+</div>
+
+</div><!-- /page -->
+<div class="footer"><strong>ORO</strong> &nbsp;|&nbsp; Business Update &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp; Confidential</div>
+
+<script>
+Chart.register(ChartDataLabels);
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = '#6C6C70';
+Chart.defaults.plugins.datalabels.display = false;
+
+const GOLD = '#FFBE47', GOLD_DK = '#C8920A', NAVY = '#1A3F6F';
+const W_COLORS = ['#BDBDBD','#4A5568', GOLD, GOLD_DK,'#2D6A4F'];
+const M_COLORS = ['#BDBDBD','#4A5568', GOLD, GOLD_DK];
+const WEEKS = ['W14\n(4d)','W15\n(5d)','W16\n(5d)','W17\n(5d)','W18\n(5d)'];
+const MONTHS = ['Jan','Feb','Mar','Apr'];
+
+const volData = [243,428,481,385,390];
+const days    = [4,5,5,5,5];
+const cxData  = [115,258,254,189,200];
+const runRates = volData.map((v,i) => Math.round(v/days[i]));
+const cxRates  = cxData.map((v,i) => Math.round(v/days[i]));
+const cxPct    = volData.map((v,i) => Math.round(cxData[i]/v*100));
+
+const dlOpts = (fmt) => ({
+  display: true,
+  anchor: 'end',
+  align: 'top',
+  clamp: true,
+  formatter: fmt,
+  font: { weight: '700', size: 11 },
+  color: '#1A1F36',
+  padding: { bottom: 2 }
+});
+
+const baseOpts = (extra={}) => ({
+  responsive: true,
+  maintainAspectRatio: false,
+  layout: { padding: { top: 28 } },
+  scales: {
+    y: { beginAtZero: true, grid: { color: '#EEEBE6' }, ticks: { font: { size: 11 } } },
+    x: { grid: { display: false }, ticks: { font: { size: 11 } } }
+  },
+  plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false }, ...extra }
+});
+
+// ND Volume WoW
+new Chart(document.getElementById('cWoWVol'), {
+  type: 'bar',
+  data: { labels: WEEKS, datasets: [{ data: volData, backgroundColor: W_COLORS, borderRadius: 5 }] },
+  options: { ...baseOpts({ datalabels: dlOpts((v,ctx) => v + '\n(' + runRates[ctx.dataIndex] + '/d)') }), layout: { padding: { top: 36 } } }
+});
+
+// Fresh vs Takeover WoW
+new Chart(document.getElementById('cWoWMix'), {
+  type: 'bar',
+  data: { labels: WEEKS, datasets: [
+    { label:'Fresh',    data:[207,261,306,236,279], backgroundColor: NAVY,   borderRadius: 0 },
+    { label:'Takeover', data:[21,152,162,132,97],   backgroundColor: GOLD,   borderRadius: 4 }
+  ]},
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 28 } },
+    scales: {
+      x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { stacked: true, grid: { color: '#EEEBE6' }, ticks: { font: { size: 11 } } }
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: { mode: 'index', intersect: false },
+      datalabels: { display: true, anchor: 'center', align: 'center', formatter: v => v > 18 ? v : '', font: { weight: '700', size: 11 }, color: '#fff' }
+    }
+  }
+});
+
+// New Customers WoW
+new Chart(document.getElementById('cWoWCx'), {
+  type: 'bar',
+  data: { labels: WEEKS, datasets: [{ data: cxData, backgroundColor: W_COLORS, borderRadius: 5 }] },
+  options: { ...baseOpts({ datalabels: dlOpts((v,ctx) => v + '\n(' + cxRates[ctx.dataIndex] + '/d)') }), layout: { padding: { top: 36 } } }
+});
+
+// Cx % of ND Vol
+new Chart(document.getElementById('cWoWCxPct'), {
+  type: 'bar',
+  data: { labels: WEEKS, datasets: [{ data: cxPct, backgroundColor: W_COLORS, borderRadius: 5 }] },
+  options: { ...baseOpts({ datalabels: dlOpts(v => v + '%') }), layout: { padding: { top: 28 } },
+    scales: {
+      y: { beginAtZero: true, max: 100, grid: { color: '#EEEBE6' }, ticks: { callback: v => v+'%', font: { size: 11 } } },
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// City ND grouped bar
+new Chart(document.getElementById('cCityND'), {
+  type: 'bar',
+  data: {
+    labels: ['Chennai','Bengaluru','Hyderabad','Pune','Vijayawada','Guntur','Warangal','Karimnagar'],
+    datasets: [
+      { label:'W14(4d)', data:[56,49,92,36,3,0,5,2],    backgroundColor:'#BDBDBD', borderRadius:2 },
+      { label:'W15(5d)', data:[87,84,160,59,12,3,12,11], backgroundColor:'#4A5568', borderRadius:2 },
+      { label:'W16(5d)', data:[94,99,159,79,19,5,13,13], backgroundColor:GOLD,      borderRadius:2 },
+      { label:'W17(5d)', data:[67,76,134,73,14,1,4,16],  backgroundColor:GOLD_DK,   borderRadius:2 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 28 } },
+    scales: {
+      y: { beginAtZero: true, grid: { color: '#EEEBE6' }, ticks: { font: { size: 11 } } },
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } }
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: { mode: 'index', intersect: false },
+      datalabels: { display: true, anchor: 'end', align: 'top', formatter: v => v > 0 ? v : '', font: { weight: '600', size: 10 }, color: '#1A1F36', clamp: true }
+    }
+  }
+});
+
+// MoM ND Volume
+new Chart(document.getElementById('cMoMVol'), {
+  type: 'bar',
+  data: { labels: MONTHS, datasets: [{ data:[2249,2757,2282,1761], backgroundColor: M_COLORS, borderRadius: 5 }] },
+  options: { ...baseOpts({ datalabels: dlOpts(v => v) }) }
+});
+
+// MoM Fresh vs Takeover
+new Chart(document.getElementById('cMoMMix'), {
+  type: 'bar',
+  data: { labels: MONTHS, datasets: [
+    { label:'Fresh',    data:[1052,1286,1352,1149], backgroundColor: NAVY, borderRadius: 0 },
+    { label:'Takeover', data:[1089,1359,824,549],   backgroundColor: GOLD, borderRadius: 4 }
+  ]},
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 28 } },
+    scales: {
+      x: { stacked: true, grid: { display: false }, ticks: { font: { size: 12 } } },
+      y: { stacked: true, grid: { color: '#EEEBE6' }, ticks: { font: { size: 12 } } }
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: { mode: 'index', intersect: false },
+      datalabels: { display: true, anchor: 'center', align: 'center', formatter: v => v, font: { weight: '700', size: 11 }, color: '#fff' }
+    }
+  }
+});
+
+// MoM New Customers
+new Chart(document.getElementById('cMoMCx'), {
+  type: 'bar',
+  data: { labels: MONTHS, datasets: [{ data:[1152,1451,1166,934], backgroundColor: M_COLORS, borderRadius: 5 }] },
+  options: { ...baseOpts({ datalabels: dlOpts(v => v) }) }
+});
+
+// MoM AUM
+new Chart(document.getElementById('cMoMAUM'), {
+  type: 'line',
+  data: { labels: MONTHS, datasets: [{
+    data: [898.5,1025.2,1138.4,1182.6],
+    borderColor: GOLD, backgroundColor: 'rgba(255,190,71,0.1)',
+    borderWidth: 3, pointBackgroundColor: GOLD, pointRadius: 6,
+    fill: true, tension: 0.3
+  }]},
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 28 } },
+    scales: {
+      y: { grid: { color: '#EEEBE6' }, ticks: { callback: v => 'Rs '+v, font: { size: 11 } } },
+      x: { grid: { display: false }, ticks: { font: { size: 12 } } }
+    },
+    plugins: {
+      legend: { display: false },
+      datalabels: { display: true, align: 'top', formatter: v => 'Rs '+v, font: { weight: '700', size: 11 }, color: GOLD_DK }
+    }
+  }
+});
+</script>
+
+<script>
+  function notifyHeight() {
+    var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    // Google Sites iframe resize messages
+    window.parent.postMessage(JSON.stringify({type:'set-iframe-height', height:h}), '*');
+    window.parent.postMessage({sentinel:'amp', type:'embed-size', height:h}, '*');
+  }
+  window.addEventListener('load', function() {
+    notifyHeight();
+    setTimeout(notifyHeight, 1000);
+    setTimeout(notifyHeight, 3000);
+  });
+</script>
+
+<script>
+// Active nav on scroll
+(function(){
+  var links = document.querySelectorAll('.sticky-nav-links a');
+  var sections = [];
+  links.forEach(function(a){
+    var id = a.getAttribute('href').replace('#','');
+    var el = document.getElementById(id);
+    if(el) sections.push({id:id,el:el,a:a});
+  });
+  function onScroll(){
+    var scrollY = window.scrollY + 80;
+    var current = sections[0];
+    sections.forEach(function(s){
+      if(s.el.getBoundingClientRect().top + window.scrollY <= scrollY) current = s;
+    });
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if(current) current.a.classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
