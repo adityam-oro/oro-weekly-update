@@ -3,291 +3,495 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ORO Business Update -- April 2026 (Archive)</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"><\/script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"><\/script>
+<title>ORO Business Update -- April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
 <style>
-  :root { --gold:#FFBE47;--gold-dk:#C8920A;--ink:#1A1F36;--green:#2D6A4F;--green-bg:#EAF4EE;--amber:#E07B00;--amber-bg:#FFF3E0;--red:#C0392B;--red-bg:#FDECEA;--navy:#1A1F36;--navy-alt:#F0F3FA;--border:#DDD9D3;--text:#2C2C2E;--muted:#6C6C70; }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;color:var(--text);background:#fff;}
-  .archive-banner{background:#2D6A4F;color:#fff;text-align:center;padding:12px 20px;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:20px;}
-  .archive-banner a{color:#FFBE47;text-decoration:none;font-weight:700;padding:4px 14px;border:1px solid rgba(255,190,71,0.4);border-radius:20px;}
-  .archive-banner a:hover{background:rgba(255,190,71,0.15);}
-  .header{background:var(--ink);border-bottom:4px solid var(--gold);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;}
-  .header-logo{font-family:'DM Serif Display',serif;font-size:32px;color:var(--gold);letter-spacing:5px;}
-  .header-meta{text-align:right;}
-  .header-period{font-size:15px;font-weight:700;color:var(--gold);}
-  .header-sub{font-size:12px;color:rgba(255,255,255,0.45);}
-  .page{max-width:1180px;margin:0 auto;padding:28px 28px 80px;}
-  .kpi-row-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:24px 0 10px;}
-  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px;}
-  .kpi-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;border-top:4px solid var(--border);}
-  .kpi-card.red{border-top-color:var(--red);}.kpi-card.amber{border-top-color:var(--amber);}.kpi-card.green{border-top-color:var(--green);}
-  .kpi-val{font-family:'DM Serif Display',serif;font-size:26px;line-height:1.1;margin-bottom:4px;}
-  .kpi-val.red{color:var(--red);}.kpi-val.amber{color:var(--amber);}.kpi-val.green{color:var(--green);}
-  .kpi-label{font-size:12px;color:var(--muted);margin-bottom:3px;}
-  .kpi-pct{font-size:12px;font-weight:600;}.kpi-pct.red{color:var(--red);}.kpi-pct.amber{color:var(--amber);}.kpi-pct.green{color:var(--green);}
-  .section{margin-top:44px;}
-  .section-head{display:flex;align-items:center;gap:12px;background:var(--navy);border-left:5px solid var(--gold);padding:12px 18px;border-radius:6px;margin-bottom:20px;}
-  .section-num{background:var(--gold);color:var(--ink);font-weight:700;font-size:13px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .section-title{font-family:'DM Serif Display',serif;font-size:20px;color:#fff;}
-  .sub-label{display:flex;align-items:center;gap:10px;margin:22px 0 10px;}
-  .sub-label-bar{width:5px;height:20px;background:var(--gold);border-radius:3px;flex-shrink:0;}
-  .sub-label-text{font-size:13px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:0.5px;}
-  .sub-label-note{font-size:12px;color:var(--muted);}
-  .tbl-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--border);margin-bottom:20px;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
-  thead tr{background:var(--navy);}
-  thead th{padding:10px 12px;color:#fff;font-weight:600;font-size:12px;text-align:left;white-space:nowrap;}
-  thead th.r{text-align:right;}thead th.c{text-align:center;}
-  tbody tr:nth-child(even){background:var(--navy-alt);}
-  tbody tr:hover{background:#e4eaf5;}
-  tbody td{padding:9px 12px;border-bottom:1px solid var(--border);}
-  tbody td.r{text-align:right;}tbody td.c{text-align:center;}
-  tr.tot td{background:var(--navy)!important;color:#fff!important;font-weight:700;}
-  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;min-width:44px;text-align:center;}
-  .pill.g{background:var(--green-bg);color:var(--green);}.pill.a{background:var(--amber-bg);color:var(--amber);}.pill.r{background:var(--red-bg);color:var(--red);}.pill.x{background:#f0f0f0;color:#888;}
-  .growth-g{color:var(--green);font-weight:700;}.growth-r{color:var(--red);font-weight:700;}
-  .tva-t{color:var(--muted);font-size:12px;}.tva-a{font-weight:700;}
-  .hl-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0 24px;}
-  .hl-box{border-radius:10px;padding:18px 20px;}
-  .hl-box.good{background:var(--green-bg);border:1px solid #b7dcc8;border-left:5px solid var(--green);}
-  .hl-box.bad{background:var(--amber-bg);border:1px solid #f5cfa0;border-left:5px solid var(--amber);}
-  .hl-title{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;}
-  .hl-box.good .hl-title{color:var(--green);}.hl-box.bad .hl-title{color:var(--amber);}
-  .hl-box ul{list-style:none;}
-  .hl-box ul li{font-size:13px;padding:6px 0 6px 18px;border-bottom:1px solid rgba(0,0,0,0.07);position:relative;line-height:1.5;}
-  .hl-box ul li:last-child{border-bottom:none;}
-  .hl-box.good ul li::before{content:'✔';position:absolute;left:0;top:7px;color:var(--green);font-size:11px;}
-  .hl-box.bad ul li::before{content:'⚠';position:absolute;left:0;top:7px;color:var(--amber);font-size:11px;}
-  .chart-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0 20px;}
-  .chart-1col{margin:16px 0 20px;}
-  .chart-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;}
-  .chart-card-title{font-size:13px;font-weight:700;color:var(--ink);flex-shrink:0;}
-  .chart-card-note{font-size:11px;color:var(--muted);line-height:1.4;flex-shrink:0;}
-  .chart-legend{display:flex;gap:14px;flex-wrap:wrap;flex-shrink:0;}
-  .chart-legend-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
-  .chart-legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
-  .chart-canvas-wrap{width:100%;height:240px;flex-shrink:0;position:relative;}
-  .chart-canvas-wrap.tall{height:300px;}
-  .chart-canvas-wrap canvas{display:block!important;width:100%!important;height:100%!important;}
-  .chart-insight{font-size:12px;color:var(--muted);font-style:italic;background:#f5f4f1;padding:8px 12px;border-radius:6px;line-height:1.5;flex-shrink:0;}
-  .aum-city-wrap{margin-bottom:18px;}
-  .aum-city-name{font-size:12px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:0.5px;padding-left:10px;border-left:4px solid var(--gold);margin-bottom:8px;}
-  .aum-tiles{display:flex;flex-wrap:wrap;gap:8px;}
-  .aum-tile{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 14px;min-width:120px;}
-  .aum-tile.total{background:var(--navy);}.aum-tile.grand{background:var(--gold);}
-  .aum-tile-name{font-size:11px;color:var(--muted);margin-bottom:3px;}
-  .aum-tile.total .aum-tile-name{color:rgba(255,255,255,0.6);}.aum-tile.grand .aum-tile-name{color:var(--ink);opacity:0.7;}
-  .aum-tile-val{font-family:'DM Serif Display',serif;font-size:18px;color:var(--ink);}
-  .aum-tile.total .aum-tile-val{color:#fff;}.aum-tile.grand .aum-tile-val{color:var(--ink);font-size:22px;}
-  .bot-tile-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;}
-  .bot-tile{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
-  .bot-tile-name{font-size:11px;color:var(--muted);margin-bottom:4px;}
-  .bot-tile-val{font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);line-height:1.1;margin-bottom:3px;}
-  .bot-tile-sub{font-size:11px;color:var(--muted);}
-  .note-box{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:13px;line-height:1.65;margin:10px 0 16px;color:var(--text);}
-  .note-box strong{color:var(--ink);}
-  .co-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px;margin:14px 0 16px;}
-  .co-card{background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
-  .co-card-head{background:var(--navy);color:#fff;font-size:11px;font-weight:700;padding:8px 12px;text-transform:uppercase;letter-spacing:0.5px;}
-  .co-card-body{padding:10px 12px;}
-  .co-terr{font-size:10px;color:var(--muted);text-transform:uppercase;font-weight:600;letter-spacing:0.3px;margin:7px 0 3px;}
-  .co-terr:first-child{margin-top:0;}
-  .co-item{font-size:12px;color:var(--text);padding:2px 0 2px 10px;position:relative;}
-  .co-item::before{content:'-';position:absolute;left:0;color:var(--gold-dk);}
-  .co-item.progress{color:var(--amber);font-style:italic;}
-  .co-bullets{list-style:none;margin:8px 0 16px;}
-  .co-bullets li{font-size:13px;color:var(--text);padding:5px 0 5px 16px;position:relative;line-height:1.55;border-bottom:1px solid var(--border);}
-  .co-bullets li:last-child{border-bottom:none;}
-  .co-bullets li::before{content:'--';position:absolute;left:0;color:var(--gold-dk);font-weight:700;}
-  .tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:5px;background:var(--navy-alt);color:var(--navy);text-transform:uppercase;white-space:nowrap;}
-  .tag-true{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;background:var(--green-bg);color:var(--green);}
-  .footer{background:var(--ink);border-top:4px solid var(--gold);text-align:center;padding:18px;font-size:12px;color:rgba(255,255,255,0.4);margin-top:48px;}
-  .footer strong{color:var(--gold);}
+:root {
+  --gold-mid:#D4A843;--gold-light:#F0C96A;--gold-dark:#8B6508;
+  --ink:#1C1C1E;--green:#2D6A4F;--green-bg:#EAF4EE;
+  --amber:#E07B00;--amber-bg:#FFF3E0;--red:#9B2335;--red-bg:#FDECEA;
+  --surface:#FAFAF8;--surface-2:#F2F1EE;--navy:#1A2B4A;
+  --grey:#8C8C8E;--grey-light:#E8E8E6;--blue:#1A3F6F;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--ink);line-height:1.5;}
+.cover{background:var(--ink);padding:60px 48px 52px;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(212,168,67,0.12) 0%,transparent 70%);border-radius:50%;}
+.cover-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;}
+.oro-logo{font-family:'DM Serif Display',serif;font-size:38px;color:var(--gold-mid);letter-spacing:0.08em;line-height:1;}
+.oro-logo span{display:block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.2em;color:rgba(212,168,67,0.6);text-transform:uppercase;margin-top:4px;}
+.week-badge{background:rgba(212,168,67,0.15);border:1px solid rgba(212,168,67,0.3);border-radius:20px;padding:6px 16px;font-size:12px;font-weight:600;color:var(--gold-mid);letter-spacing:0.05em;}
+.cover-title{font-family:'DM Serif Display',serif;font-size:44px;color:#fff;line-height:1.15;margin-bottom:12px;}
+.cover-sub{font-size:15px;color:rgba(255,255,255,0.5);}
+.cover-divider{height:1px;background:linear-gradient(90deg,rgba(212,168,67,0.4),transparent);margin:28px 0;}
+.cover-meta{display:flex;gap:32px;}
+.cover-meta-item{font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.1em;}
+.cover-meta-item strong{display:block;font-size:16px;font-weight:600;color:rgba(255,255,255,0.85);text-transform:none;letter-spacing:0;margin-bottom:2px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(212,168,67,0.7);text-decoration:none;margin-bottom:20px;}
+.back-link:hover{color:var(--gold-mid);}
+.container{max-width:1100px;margin:0 auto;padding:0 32px;}
+.section{padding:48px 0 40px;border-bottom:1px solid var(--grey-light);}
+.section:last-child{border-bottom:none;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+.section-icon{font-size:20px;}
+.section-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--navy);}
+.section-num{font-size:11px;font-weight:700;color:var(--gold-mid);letter-spacing:0.15em;text-transform:uppercase;background:rgba(212,168,67,0.1);padding:3px 8px;border-radius:4px;}
+.kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:28px;}
+.kpi-card{background:#fff;border:1px solid var(--grey-light);border-radius:10px;padding:16px;}
+.kpi-label{font-size:11px;font-weight:600;color:var(--grey);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+.kpi-value{font-size:22px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.kpi-sub{font-size:11px;color:var(--grey);}
+.pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;}
+.pill.green{background:var(--green-bg);color:var(--green);}
+.pill.amber{background:var(--amber-bg);color:var(--amber);}
+.pill.red{background:var(--red-bg);color:var(--red);}
+.pill.na{background:var(--surface-2);color:var(--grey);}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;}
+.summary-box{border-radius:10px;padding:20px 22px;}
+.summary-box.worked{background:var(--green-bg);border-left:3px solid var(--green);}
+.summary-box.improve{background:var(--amber-bg);border-left:3px solid var(--amber);}
+.summary-box h4{font-size:13px;font-weight:700;margin-bottom:12px;}
+.summary-box.worked h4{color:var(--green);}
+.summary-box.improve h4{color:var(--amber);}
+.summary-box ul{list-style:none;padding:0;}
+.summary-box ul li{font-size:13px;line-height:1.5;padding:4px 0;border-bottom:1px solid rgba(0,0,0,0.06);}
+.summary-box ul li:last-child{border-bottom:none;}
+.ach-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+.ach-table thead tr{background:var(--navy);color:#fff;}
+.ach-table thead th{padding:10px 14px;text-align:left;font-weight:600;font-size:12px;letter-spacing:0.04em;}
+.ach-table tbody tr:nth-child(even){background:var(--surface-2);}
+.ach-table tbody tr:nth-child(odd){background:#fff;}
+.ach-table tbody td{padding:9px 14px;border-bottom:1px solid var(--grey-light);}
+.ach-table tfoot tr{background:var(--navy);}
+.ach-table tfoot td{padding:10px 14px;color:#fff;font-weight:700;font-size:13px;}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px;}
+.chart-card{background:#fff;border:1px solid var(--grey-light);border-radius:10px;padding:20px;}
+.chart-card.full{grid-column:1/-1;}
+.chart-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:16px;text-transform:uppercase;letter-spacing:0.06em;}
+.data-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+.data-table th{background:var(--navy);color:#fff;padding:9px 14px;text-align:left;font-size:12px;font-weight:600;}
+.data-table td{padding:9px 14px;border-bottom:1px solid var(--grey-light);}
+.data-table tbody tr:nth-child(even){background:var(--surface-2);}
+.data-table tbody tr:nth-child(odd){background:#fff;}
+.data-table tfoot td{background:var(--navy);color:#fff;font-weight:700;padding:9px 14px;}
+.support-table,.people-table{width:100%;border-collapse:collapse;font-size:13px;}
+.support-table th,.people-table th{background:var(--navy);color:#fff;padding:9px 14px;text-align:left;font-size:12px;font-weight:600;}
+.support-table td,.people-table td{padding:9px 14px;border-bottom:1px solid var(--grey-light);}
+.support-table tbody tr:nth-child(even),.people-table tbody tr:nth-child(even){background:var(--surface-2);}
+.support-table tbody tr:nth-child(odd),.people-table tbody tr:nth-child(odd){background:#fff;}
+.support-table tfoot td,.people-table tfoot td{background:var(--navy);color:#fff;font-weight:700;}
+.expansion-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.expansion-card{background:#fff;border:1px solid var(--grey-light);border-radius:10px;padding:20px;}
+.expansion-card h4{font-size:13px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px;}
+.co-table{width:100%;border-collapse:collapse;font-size:12px;}
+.co-table th{background:var(--navy);color:#fff;padding:7px 12px;text-align:left;font-size:11px;}
+.co-table td{padding:7px 12px;border-bottom:1px solid var(--grey-light);}
+.co-table tbody tr:nth-child(even){background:var(--surface-2);}
+.co-table .city-row td{font-weight:700;background:rgba(26,43,74,0.05);}
+.pipeline-list{display:flex;flex-wrap:wrap;gap:8px;}
+.pipeline-city{background:var(--surface-2);border:1px solid var(--grey-light);border-radius:6px;padding:6px 12px;font-size:12px;font-weight:500;color:var(--navy);}
+.pipeline-state{font-size:11px;font-weight:700;color:var(--gold-mid);text-transform:uppercase;letter-spacing:0.08em;margin-top:14px;margin-bottom:8px;}
+.audit-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.audit-card{background:#fff;border:1px solid var(--grey-light);border-radius:10px;padding:20px;}
+.audit-card h4{font-size:13px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px;}
+.audit-table{width:100%;border-collapse:collapse;font-size:12px;}
+.audit-table th{background:var(--navy);color:#fff;padding:7px 12px;font-size:11px;text-align:left;}
+.audit-table td{padding:7px 12px;border-bottom:1px solid var(--grey-light);}
+.audit-table tbody tr:nth-child(even){background:var(--surface-2);}
+.audit-actions{grid-column:1/-1;}
+.actions-table{width:100%;border-collapse:collapse;font-size:12px;}
+.actions-table th{background:var(--navy);color:#fff;padding:7px 12px;font-size:11px;text-align:left;}
+.actions-table td{padding:7px 12px;border-bottom:1px solid var(--grey-light);}
+.actions-table tbody tr:nth-child(even){background:var(--surface-2);}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;}
+.badge.internal{background:rgba(26,43,74,0.08);color:var(--navy);}
+.badge.training{background:rgba(212,168,67,0.15);color:var(--gold-dark);}
+.badge.auction{background:var(--amber-bg);color:var(--amber);}
+.badge.ops{background:var(--surface-2);color:var(--grey);}
+.badge.gbs{background:var(--green-bg);color:var(--green);}
+.subsection-title{font-size:14px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.07em;margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--gold-mid);display:inline-block;}
+.info-note{background:var(--surface-2);border-left:3px solid var(--gold-mid);border-radius:0 6px 6px 0;padding:10px 14px;font-size:12px;color:var(--grey);margin:12px 0;}
+.archive-footer{background:var(--ink);padding:32px 0;}
+.archive-footer .container{display:flex;align-items:center;justify-content:space-between;}
+.archive-footer-text{color:rgba(255,255,255,0.4);font-size:13px;}
+.archive-footer a{color:var(--gold-mid);text-decoration:none;font-size:13px;font-weight:600;}
+@media(max-width:768px){
+  .kpi-strip{grid-template-columns:repeat(2,1fr);}
+  .charts-grid,.summary-grid,.expansion-grid,.audit-grid{grid-template-columns:1fr;}
+  .cover{padding:36px 24px;}
+  .cover-title{font-size:30px;}
+  .container{padding:0 16px;}
+}
 </style>
 </head>
 <body>
 
-<div class="archive-banner">
-  &#128196;&nbsp; Archived Report -- April 2026 Full Month
-  <a href="../index.html">&#8592; Back to Latest</a>
-</div>
-
-<div class="header">
-  <div>
-    <div class="header-logo">ORO</div>
-    <div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:2px;">Business Update &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp; Full Month Summary</div>
+<div class="cover">
+  <div class="container">
+    <a href="../index.html" class="back-link">&#8592; Back to Latest Report</a>
+    <div class="cover-top">
+      <div class="oro-logo">ORO<span>Gold Loan Company</span></div>
+      <div class="week-badge">April 2026 -- Monthly Report</div>
+    </div>
+    <div class="cover-title">Business Update</div>
+    <div class="cover-sub">April 2026 &nbsp;|&nbsp; Weeks 14-18 &nbsp;|&nbsp; 8 Cities &nbsp;|&nbsp; Archive</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><strong>1,767</strong>ND Volume</div>
+      <div class="cover-meta-item"><strong>₹94.5 Cr</strong>ND Value</div>
+      <div class="cover-meta-item"><strong>₹1,182.5 Cr</strong>AUM</div>
+      <div class="cover-meta-item"><strong>934</strong>New Customers</div>
+      <div class="cover-meta-item"><strong>3.93%</strong>AUM Growth</div>
+    </div>
   </div>
-  <div class="header-meta">
-    <div class="header-period">April 2026</div>
-    <div class="header-sub">Confidential</div>
-  </div>
 </div>
 
-<div class="page">
-
-<div class="kpi-row-label">April 2026 vs. target -- Full Month</div>
-<div class="kpi-row">
-  <div class="kpi-card red"><div class="kpi-val red">1,523</div><div class="kpi-label">Total Appointments</div><div class="kpi-pct red">59% of target</div></div>
-  <div class="kpi-card red"><div class="kpi-val red">282</div><div class="kpi-label">Total DVs</div><div class="kpi-pct red">61% of target</div></div>
-  <div class="kpi-card red"><div class="kpi-val red">934</div><div class="kpi-label">New Customers</div><div class="kpi-pct red">54% of target</div></div>
-  <div class="kpi-card red"><div class="kpi-val red">Rs 94.6 Cr</div><div class="kpi-label">ND Value</div><div class="kpi-pct red">52% of target</div></div>
-</div>
-<div class="kpi-row">
-  <div class="kpi-card red"><div class="kpi-val red">Rs 44.5 Cr</div><div class="kpi-label">Net Addition</div><div class="kpi-pct red">36% of target</div></div>
-  <div class="kpi-card green"><div class="kpi-val green">Rs 1,182.6 Cr</div><div class="kpi-label">AUM across 8 cities</div><div class="kpi-pct green">3.97% growth</div></div>
-  <div class="kpi-card red"><div class="kpi-val red">1,761</div><div class="kpi-label">ND Volume</div><div class="kpi-pct red">55% of target</div></div>
-  <div class="kpi-card green"><div class="kpi-val green">52.1%</div><div class="kpi-label">Customer Met %</div><div class="kpi-pct green">87% of target</div></div>
-</div>
-
+<!-- SECTION 1 -->
 <div class="section">
-<div class="section-head"><div class="section-num">1</div><div class="section-title">Business Performance</div></div>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-icon">📊</span>
+      <span class="section-num">01</span>
+      <h2 class="section-title">Business Performance</h2>
+    </div>
 
-<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Period Comparison</div><div class="sub-label-note">| First Half vs Second Half</div></div>
-<div class="tbl-wrap"><table>
-  <thead><tr><th>Metric</th><th class="c">Apr 1-12 (Wks 14-15)</th><th class="c">Apr 13-28 (Wks 16-17)</th><th class="c" style="background:#8B6508;">Full April</th></tr></thead>
-  <tbody>
-    <tr><td>Total Appointments</td><td class="c">582</td><td class="c">749</td><td class="c"><strong>1,331</strong> &nbsp;<span class="growth-g">+28.7%</span></td></tr>
-    <tr><td>Total DVs</td><td class="c">119</td><td class="c">113</td><td class="c"><strong>232</strong> &nbsp;<span class="growth-r">-5.0%</span></td></tr>
-    <tr><td>New Customers</td><td class="c">324</td><td class="c">446</td><td class="c"><strong>770</strong> &nbsp;<span class="growth-g">+37.7%</span></td></tr>
-    <tr><td>ND Vol -- Total</td><td class="c">578</td><td class="c">868</td><td class="c"><strong>1,446</strong> &nbsp;<span class="growth-g">+50.2%</span></td></tr>
-    <tr><td style="padding-left:22px;color:var(--muted);">Fresh Loans</td><td class="c">468</td><td class="c">542</td><td class="c">1,010 &nbsp;<span class="growth-g">+15.8%</span></td></tr>
-    <tr><td style="padding-left:22px;color:var(--muted);">Takeover</td><td class="c">173</td><td class="c">294</td><td class="c">467 &nbsp;<span class="growth-g">+70.0%</span></td></tr>
-    <tr><td>ND Value</td><td class="c">Rs 27.4 Cr</td><td class="c">Rs 51.4 Cr</td><td class="c"><strong>Rs 78.8 Cr</strong> &nbsp;<span class="growth-g">+87.6%</span></td></tr>
-    <tr><td>Net Addition</td><td class="c">Rs 4.5 Cr</td><td class="c">Rs 30.7 Cr</td><td class="c"><strong>Rs 35.2 Cr</strong> &nbsp;<span class="growth-g">+582%</span></td></tr>
-    <tr><td>AUM (end of period)</td><td class="c">Rs 1,142.0 Cr</td><td class="c">Rs 1,170.2 Cr</td><td class="c"><strong>Rs 1,182.6 Cr</strong> &nbsp;<span class="growth-g">+2.5%</span></td></tr>
-  </tbody>
-</table></div>
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">ND Volume</div>
+        <div class="kpi-value">1,767</div>
+        <div class="kpi-sub">Mar: 2,279 &nbsp; <span class="pill red">-22.5% MoM</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">ND Value</div>
+        <div class="kpi-value">₹94.5 Cr</div>
+        <div class="kpi-sub">Mar: ₹128.5 Cr &nbsp; <span class="pill red">-26.5% MoM</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">AUM</div>
+        <div class="kpi-value">₹1,182.5 Cr</div>
+        <div class="kpi-sub">Net Add: ₹44.73 Cr &nbsp; <span class="pill amber">+3.93%</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">New Customers</div>
+        <div class="kpi-value">934</div>
+        <div class="kpi-sub">Mar: 1,165 &nbsp; <span class="pill red">-19.8% MoM</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Loan Value</div>
+        <div class="kpi-value">₹5.3 L</div>
+        <div class="kpi-sub">Mar: ₹5.6 L &nbsp; <span class="pill red">-5.4% MoM</span></div>
+      </div>
+    </div>
 
-<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Disbursal Performance</div><div class="sub-label-note">| Full April -- Target / Achieved (%)</div></div>
-<div class="tbl-wrap"><table>
-  <thead><tr><th>City</th><th class="c">New Cxs</th><th class="c">ND Vol</th><th class="c">ND Value (Rs Cr)</th><th class="c">Net Addition (Rs Cr)</th><th class="r">AUM (Rs Cr)</th></tr></thead>
-  <tbody>
-    <tr><td><strong>Chennai</strong></td><td class="c"><span class="tva-t">276</span>/<span class="tva-a">190</span> <span class="pill a">69%</span></td><td class="c"><span class="tva-t">500</span>/<span class="tva-a">345</span> <span class="pill a">69%</span></td><td class="c"><span class="tva-t">24.0</span>/<span class="tva-a">13.2</span> <span class="pill a">55%</span></td><td class="c"><span class="tva-t">16.3</span>/<span class="tva-a">7.3</span> <span class="pill r">45%</span></td><td class="r">176.6</td></tr>
-    <tr><td><strong>Bengaluru</strong></td><td class="c"><span class="tva-t">349</span>/<span class="tva-a">184</span> <span class="pill a">53%</span></td><td class="c"><span class="tva-t">674</span>/<span class="tva-a">354</span> <span class="pill a">53%</span></td><td class="c"><span class="tva-t">33.7</span>/<span class="tva-a">19.3</span> <span class="pill a">57%</span></td><td class="c"><span class="tva-t">22.9</span>/<span class="tva-a">6.2</span> <span class="pill r">27%</span></td><td class="r">230.4</td></tr>
-    <tr><td><strong>Hyderabad</strong></td><td class="c"><span class="tva-t">598</span>/<span class="tva-a">315</span> <span class="pill a">53%</span></td><td class="c"><span class="tva-t">1,182</span>/<span class="tva-a">605</span> <span class="pill a">51%</span></td><td class="c"><span class="tva-t">78.0</span>/<span class="tva-a">37.4</span> <span class="pill r">48%</span></td><td class="c"><span class="tva-t">53.0</span>/<span class="tva-a">20.6</span> <span class="pill r">39%</span></td><td class="r">531.2</td></tr>
-    <tr><td><strong>Pune</strong></td><td class="c"><span class="tva-t">231</span>/<span class="tva-a">146</span> <span class="pill a">63%</span></td><td class="c"><span class="tva-t">438</span>/<span class="tva-a">289</span> <span class="pill a">66%</span></td><td class="c"><span class="tva-t">18.4</span>/<span class="tva-a">12.8</span> <span class="pill a">69%</span></td><td class="c"><span class="tva-t">12.5</span>/<span class="tva-a">2.1</span> <span class="pill r">17%</span></td><td class="r">137.4</td></tr>
-    <tr><td><strong>Vijayawada</strong></td><td class="c"><span class="tva-t">84</span>/<span class="tva-a">30</span> <span class="pill r">36%</span></td><td class="c"><span class="tva-t">141</span>/<span class="tva-a">68</span> <span class="pill r">48%</span></td><td class="c"><span class="tva-t">11.3</span>/<span class="tva-a">6.7</span> <span class="pill a">59%</span></td><td class="c"><span class="tva-t">5.7</span>/<span class="tva-a">4.2</span> <span class="pill a">74%</span></td><td class="r">64.0</td></tr>
-    <tr><td><strong>Guntur</strong></td><td class="c"><span class="tva-t">60</span>/<span class="tva-a">7</span> <span class="pill r">12%</span></td><td class="c"><span class="tva-t">72</span>/<span class="tva-a">11</span> <span class="pill r">15%</span></td><td class="c"><span class="tva-t">5.9</span>/<span class="tva-a">0.7</span> <span class="pill r">12%</span></td><td class="c"><span class="tva-t">5.3</span>/<span class="tva-a">0.1</span> <span class="pill r">3%</span></td><td class="r">13.2</td></tr>
-    <tr><td><strong>Warangal</strong></td><td class="c"><span class="tva-t">79</span>/<span class="tva-a">25</span> <span class="pill r">32%</span></td><td class="c"><span class="tva-t">96</span>/<span class="tva-a">37</span> <span class="pill r">39%</span></td><td class="c"><span class="tva-t">5.4</span>/<span class="tva-a">2.3</span> <span class="pill r">43%</span></td><td class="c"><span class="tva-t">4.8</span>/<span class="tva-a">2.1</span> <span class="pill r">44%</span></td><td class="r">16.9</td></tr>
-    <tr><td><strong>Karimnagar</strong></td><td class="c"><span class="tva-t">66</span>/<span class="tva-a">37</span> <span class="pill a">56%</span></td><td class="c"><span class="tva-t">80</span>/<span class="tva-a">52</span> <span class="pill a">65%</span></td><td class="c"><span class="tva-t">4.4</span>/<span class="tva-a">2.2</span> <span class="pill a">51%</span></td><td class="c"><span class="tva-t">4.0</span>/<span class="tva-a">1.9</span> <span class="pill a">53%</span></td><td class="r">12.6</td></tr>
-    <tr class="tot"><td>ORO Total</td><td class="c">1,743 / 934 <span style="color:#f08090;font-size:11px;">54%</span></td><td class="c">3,183 / 1,761 <span style="color:#f08090;font-size:11px;">55%</span></td><td class="c">181.1 / 94.6 <span style="color:#f08090;font-size:11px;">52%</span></td><td class="c">124.6 / 44.5 <span style="color:#f08090;font-size:11px;">36%</span></td><td class="r">1,182.6</td></tr>
-  </tbody>
-</table></div>
+    <div class="subsection-title">City-wise Performance -- April 2026</div>
+    <table class="ach-table">
+      <thead>
+        <tr>
+          <th>City</th>
+          <th>ND Vol (#)</th>
+          <th>ND Val (₹ Cr)</th>
+          <th>MoM Vol %</th>
+          <th>MoM Val %</th>
+          <th>New Cxs</th>
+          <th>AUM (₹ Cr)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Chennai</strong></td><td>351</td><td>₹13.4</td><td><span class="pill red">-12.47%</span></td><td><span class="pill red">-28.28%</span></td><td>190</td><td>₹176.8</td></tr>
+        <tr><td><strong>Bengaluru</strong></td><td>355</td><td>₹19.3</td><td><span class="pill red">-20.05%</span></td><td><span class="pill red">-9.54%</span></td><td>184</td><td>₹230.4</td></tr>
+        <tr><td><strong>Hyderabad</strong></td><td>605</td><td>₹37.4</td><td><span class="pill red">-28.32%</span></td><td><span class="pill red">-33.08%</span></td><td>315</td><td>₹529.9</td></tr>
+        <tr><td><strong>Pune</strong></td><td>289</td><td>₹12.8</td><td><span class="pill red">-9.12%</span></td><td><span class="pill green">+2.17%</span></td><td>146</td><td>₹137.3</td></tr>
+        <tr><td><strong>Vijayawada</strong></td><td>69</td><td>₹6.4</td><td><span class="pill red">-28.13%</span></td><td><span class="pill red">-21.05%</span></td><td>30</td><td>₹63.7</td></tr>
+        <tr><td><strong>Guntur</strong></td><td>11</td><td>₹0.7</td><td><span class="pill red">-71.79%</span></td><td><span class="pill red">-85.48%</span></td><td>7</td><td>₹13.0</td></tr>
+        <tr><td><strong>Warangal</strong></td><td>36</td><td>₹2.3</td><td><span class="pill red">-50.68%</span></td><td><span class="pill red">-40.20%</span></td><td>25</td><td>₹16.9</td></tr>
+        <tr><td><strong>Karimnagar</strong></td><td>52</td><td>₹2.2</td><td><span class="pill red">-21.21%</span></td><td><span class="pill red">-33.45%</span></td><td>37</td><td>₹12.5</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>ORO Total</td><td>1,768</td><td>₹94.5</td><td><span class="pill red" style="background:rgba(155,35,53,0.2);color:#EB8A97;">-22.49%</span></td><td><span class="pill red" style="background:rgba(155,35,53,0.2);color:#EB8A97;">-26.46%</span></td><td>934</td><td>₹1,182.5</td></tr>
+      </tfoot>
+    </table>
 
-<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Key Highlights</div></div>
-<div class="hl-grid">
-  <div class="hl-box good">
-    <div class="hl-title">&#10003; What Worked Well</div>
-    <ul>
-      <li>Second half recovery: Apr 13-28 delivered Rs 51.4 Cr ND vs Rs 27.4 Cr in the first half -- nearly double.</li>
-      <li>Takeover recovered from Rs 1.2 Cr (Wk 14) to Rs 11-12 Cr in Wks 15-17.</li>
-      <li>AUM crossed Rs 1,182 Cr with consistent week-on-week growth across all 4 weeks.</li>
-      <li>Hyderabad DVs closed at 85% -- strong conversion from visit to loan.</li>
-      <li>Chennai DV conversion at 72.3% vs 70.6% target -- only city to beat DV conversion target.</li>
-      <li>Week 16 was our best week: Rs 30.2 Cr ND, 481 loans, 1.70% AUM growth.</li>
-    </ul>
-  </div>
-  <div class="hl-box bad">
-    <div class="hl-title">&#9651; Needs Improvement</div>
-    <ul>
-      <li>Monthly ND at 52%: Rs 94.6 Cr vs Rs 181.1 Cr target. Gold rate movements and bank holidays hurt the start of month.</li>
-      <li>Net addition at 36%: Rs 44.5 Cr vs Rs 124.6 Cr target.</li>
-      <li>New cities remain fragile -- Vijayawada, Warangal, Guntur need digital and local lead focus.</li>
-      <li>Bengaluru needs to improve conversions across the board.</li>
-      <li>Guntur had a tough month due to people constraints -- urgent fix required.</li>
-    </ul>
+    <div class="subsection-title" style="margin-top:32px;">Week on Week -- April</div>
+    <table class="ach-table">
+      <thead>
+        <tr><th>Metric</th><th>W14</th><th>W15</th><th>W16</th><th>W17</th><th>W18</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ND Volume</td><td>247</td><td>364</td><td>380</td><td>396</td><td>390</td></tr>
+        <tr><td>ND Value (₹ Cr)</td><td>14.2</td><td>19.4</td><td>20.8</td><td>21.6</td><td>18.5</td></tr>
+        <tr><td>Fresh Loans (#)</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td></tr>
+        <tr><td>AUM (₹ Lakhs)</td><td>--</td><td>--</td><td>--</td><td>--</td><td>1,18,248.5</td></tr>
+        <tr><td>New Customers</td><td>--</td><td>--</td><td>--</td><td>--</td><td>200</td></tr>
+      </tbody>
+    </table>
+    <div class="info-note">Note: Full week-by-week April breakdown was unavailable at archive time. Key available data points shown above.</div>
+
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title">ND Volume -- Month on Month</div>
+        <canvas id="momVolApr" height="200"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">ND Value (₹ Cr) -- Month on Month</div>
+        <canvas id="momValApr" height="200"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Loan Mix -- April 2026 (₹ Cr)</div>
+        <canvas id="loanMixApr" height="200"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">AUM Trend -- Jan to Apr 2026 (₹ Lakhs)</div>
+        <canvas id="aumApr" height="200"></canvas>
+      </div>
+      <div class="chart-card full">
+        <div class="chart-title">City-wise ND Volume -- Jan to Apr 2026</div>
+        <canvas id="cityApr" height="160"></canvas>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-box worked">
+        <h4>✅ What Worked Well</h4>
+        <ul>
+          <li>AUM crossed ₹1,182 Cr -- positive net addition of ₹44.73 Cr despite lower disbursals</li>
+          <li>Pune held ground on ND value with +2.17% MoM despite volume decline</li>
+          <li>Hyderabad remained the top city by volume (605 loans) and value (₹37.4 Cr)</li>
+          <li>Week 17-18 saw recovery in ND volume to 390+ range</li>
+        </ul>
+      </div>
+      <div class="summary-box improve">
+        <h4>⚠️ Needs Improvement</h4>
+        <ul>
+          <li>Guntur volumes collapsed 71.8% MoM -- critical recovery needed</li>
+          <li>Warangal down 50.7% -- team and pipeline issues to address</li>
+          <li>All cities showed negative MoM volume trend -- April was a weak month overall</li>
+          <li>New customer acquisition down 19.8% from March</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
-</div>
 
+<!-- SECTION 2: INITIATIVES -->
 <div class="section">
-<div class="section-head"><div class="section-num">2</div><div class="section-title">Week-on-Week Performance</div></div>
-<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">City-wise ND Volume</div><div class="sub-label-note">| Weeks 14-18</div></div>
-<div class="tbl-wrap"><table>
-  <thead><tr><th>City</th><th class="r">W14 Vol</th><th class="r">W14 Val</th><th class="r">W15 Vol</th><th class="r">W15 Val</th><th class="r">W16 Vol</th><th class="r">W16 Val</th><th class="r">W17 Vol</th><th class="r">W17 Val</th><th class="r">W18 Vol</th><th class="r">W18 Val</th></tr></thead>
-  <tbody>
-    <tr><td>Chennai</td><td class="r">56</td><td class="r">Rs 2.3</td><td class="r">87</td><td class="r">Rs 2.7</td><td class="r">94</td><td class="r">Rs 4.8</td><td class="r">67</td><td class="r">Rs 2.2</td><td class="r">71</td><td class="r">Rs 2.4</td></tr>
-    <tr><td>Bengaluru</td><td class="r">49</td><td class="r">Rs 1.1</td><td class="r">84</td><td class="r">Rs 3.7</td><td class="r">99</td><td class="r">Rs 7.3</td><td class="r">76</td><td class="r">Rs 3.8</td><td class="r">78</td><td class="r">Rs 4.2</td></tr>
-    <tr><td>Hyderabad</td><td class="r">92</td><td class="r">Rs 4.4</td><td class="r">160</td><td class="r">Rs 9.8</td><td class="r">159</td><td class="r">Rs 10.7</td><td class="r">134</td><td class="r">Rs 8.8</td><td class="r">131</td><td class="r">Rs 7.3</td></tr>
-    <tr><td>Pune</td><td class="r">36</td><td class="r">Rs 1.6</td><td class="r">59</td><td class="r">Rs 2.4</td><td class="r">79</td><td class="r">Rs 3.9</td><td class="r">73</td><td class="r">Rs 3.5</td><td class="r">64</td><td class="r">Rs 2.2</td></tr>
-    <tr><td>Vijayawada</td><td class="r">3</td><td class="r">Rs 0.4</td><td class="r">12</td><td class="r">Rs 1.4</td><td class="r">19</td><td class="r">Rs 2.2</td><td class="r">14</td><td class="r">Rs 1.3</td><td class="r">25</td><td class="r">Rs 1.5</td></tr>
-    <tr><td>Guntur</td><td class="r">0</td><td class="r">Rs 0.0</td><td class="r">3</td><td class="r">Rs 0.2</td><td class="r">5</td><td class="r">Rs 0.2</td><td class="r">1</td><td class="r">Rs 0.0</td><td class="r">2</td><td class="r">Rs 0.3</td></tr>
-    <tr><td>Warangal</td><td class="r">5</td><td class="r">Rs 0.3</td><td class="r">12</td><td class="r">Rs 0.5</td><td class="r">13</td><td class="r">Rs 0.5</td><td class="r">4</td><td class="r">Rs 0.5</td><td class="r">7</td><td class="r">Rs 0.7</td></tr>
-    <tr><td>Karimnagar</td><td class="r">2</td><td class="r">Rs 0.0</td><td class="r">11</td><td class="r">Rs 0.3</td><td class="r">13</td><td class="r">Rs 0.5</td><td class="r">16</td><td class="r">Rs 0.9</td><td class="r">12</td><td class="r">Rs 0.5</td></tr>
-    <tr class="tot"><td>ORO</td><td class="r">243</td><td class="r">Rs 10.1</td><td class="r">428</td><td class="r">Rs 20.9</td><td class="r">481</td><td class="r">Rs 30.2</td><td class="r">385</td><td class="r">Rs 21.2</td><td class="r">390</td><td class="r">Rs 19.0</td></tr>
-  </tbody>
-</table></div>
-
-<div class="chart-2col">
-  <div class="chart-card">
-    <div class="chart-card-title">ND Volume -- Week on Week (W14-W18)</div>
-    <div class="chart-canvas-wrap"><canvas id="cWoWVol"></canvas></div>
-  </div>
-  <div class="chart-card">
-    <div class="chart-card-title">AUM -- Monthly Growth (Jan-Apr 2026)</div>
-    <div class="chart-canvas-wrap"><canvas id="cMoMAUM"></canvas></div>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-icon">🚀</span>
+      <span class="section-num">02</span>
+      <h2 class="section-title">New Initiatives and Pilots</h2>
+    </div>
+    <div class="info-note">Bot initiative was live in Bengaluru, Hyderabad, and Pune during April. Full bot summary data is captured in the May 2026 report which covers cumulative metrics.</div>
   </div>
 </div>
-</div>
 
+<!-- SECTION 3: SUPPORT -->
 <div class="section">
-<div class="section-head"><div class="section-num">3</div><div class="section-title">Initiatives -- Bot Summary</div></div>
-<div class="bot-tile-row">
-  <div class="bot-tile"><div class="bot-tile-name">Total Assigned</div><div class="bot-tile-val">11.4 L</div><div class="bot-tile-sub">Blr: 3.8L | Hyd: 5.0L | Pune: 2.6L</div></div>
-  <div class="bot-tile"><div class="bot-tile-name">Connected</div><div class="bot-tile-val">4.02 L</div><div class="bot-tile-sub">Connect rate: 35.2%</div></div>
-  <div class="bot-tile"><div class="bot-tile-name">Appts + DVs</div><div class="bot-tile-val">766</div><div class="bot-tile-sub">CCL2A: 6.0%</div></div>
-  <div class="bot-tile"><div class="bot-tile-name">Total Loans</div><div class="bot-tile-val">58</div><div class="bot-tile-sub">Rs 3.92 Cr loan amount</div></div>
-  <div class="bot-tile"><div class="bot-tile-name">Cost / Appointment</div><div class="bot-tile-val">Rs 2,023</div><div class="bot-tile-sub">Best: Hyd at Rs 1,533</div></div>
-  <div class="bot-tile"><div class="bot-tile-name">Cost / Connected</div><div class="bot-tile-val">Rs 121</div><div class="bot-tile-sub">Best: Pune at Rs 104</div></div>
-  <div class="bot-tile"><div class="bot-tile-name">Total Cost</div><div class="bot-tile-val">Rs 15.5 L</div><div class="bot-tile-sub">Caller + call costs</div></div>
-  <div class="bot-tile"><div class="bot-tile-name">Abandoned Calls</div><div class="bot-tile-val">23,301</div><div class="bot-tile-sub">A2C abandon rate: 2.04%</div></div>
-</div>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-icon">🎧</span>
+      <span class="section-num">03</span>
+      <h2 class="section-title">Support</h2>
+    </div>
+    <div class="info-note">Detailed April support caller metrics are in the original April monthly report. Key stat: 8 support callers active across the month.</div>
+  </div>
 </div>
 
+<!-- SECTION 4: PEOPLE -->
 <div class="section">
-<div class="section-head"><div class="section-num">4</div><div class="section-title">People -- Hiring</div></div>
-<div class="tbl-wrap"><table>
-  <thead><tr><th>Team</th><th class="r">Quarterly Target</th><th class="r">Hired (Apr)</th><th class="c">Achievement</th><th>Comments</th></tr></thead>
-  <tbody>
-    <tr><td>Tele-calling</td><td class="r">9</td><td class="r">0</td><td class="c"><span class="pill r">0%</span></td><td></td></tr>
-    <tr><td>Support</td><td class="r">7</td><td class="r">2</td><td class="c"><span class="pill r">29%</span></td><td></td></tr>
-    <tr><td>Chennai City</td><td class="r">23</td><td class="r">2</td><td class="c"><span class="pill r">9%</span></td><td>Undergoing training</td></tr>
-    <tr><td>Bangalore City</td><td class="r">25</td><td class="r">2</td><td class="c"><span class="pill r">8%</span></td><td></td></tr>
-    <tr><td>Pune City</td><td class="r">12</td><td class="r">0</td><td class="c"><span class="pill r">0%</span></td><td></td></tr>
-    <tr><td>Hyderabad</td><td class="r">25</td><td class="r">8</td><td class="c"><span class="pill r">32%</span></td><td></td></tr>
-    <tr><td>Vijayawada</td><td class="r">4</td><td class="r">4</td><td class="c"><span class="pill g">100%</span></td><td></td></tr>
-    <tr><td>Guntur</td><td class="r">9</td><td class="r">3</td><td class="c"><span class="pill r">33%</span></td><td></td></tr>
-    <tr><td>Warangal</td><td class="r">3</td><td class="r">1</td><td class="c"><span class="pill r">33%</span></td><td></td></tr>
-    <tr><td>Central Team</td><td class="r">1</td><td class="r">1</td><td class="c"><span class="pill g">100%</span></td><td>Performance marketing</td></tr>
-    <tr class="tot"><td>Total</td><td class="r">118</td><td class="r">23</td><td class="c">19.49%</td><td></td></tr>
-  </tbody>
-</table></div>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-icon">👥</span>
+      <span class="section-num">04</span>
+      <h2 class="section-title">People</h2>
+    </div>
+    <div class="info-note">Hiring targets and achievements for April are reflected in the May 2026 cumulative people data, as hiring continued across the month boundary.</div>
+  </div>
 </div>
 
+<!-- SECTION 5: EXPANSION -->
+<div class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-icon">🗺️</span>
+      <span class="section-num">05</span>
+      <h2 class="section-title">Expansion</h2>
+    </div>
+    <div class="expansion-grid">
+      <div class="expansion-card">
+        <h4>Cluster Offices as of April 2026</h4>
+        <table class="co-table">
+          <thead><tr><th>City</th><th>Territory</th><th>Cluster Office</th></tr></thead>
+          <tbody>
+            <tr class="city-row"><td>Chennai</td><td>Chn -- North</td><td>Perambur, Ambattur</td></tr>
+            <tr><td></td><td>Chn -- South</td><td>Yet to Open</td></tr>
+            <tr class="city-row"><td>Bangalore</td><td>Blr -- North</td><td>Yet to Open</td></tr>
+            <tr><td></td><td>Blr -- South</td><td>JP Nagar, Banashankari</td></tr>
+            <tr class="city-row"><td>Hyderabad</td><td>Hyd -- East</td><td>ECIL, Kharmanghat, Malkajgiri, Uppal, Vanasthalipuram, TCPL-Nacharam</td></tr>
+            <tr><td></td><td>Hyd -- West</td><td>KPHB, Madhapur, Manikonda, Miyapur</td></tr>
+            <tr><td></td><td>Hyd -- Central</td><td>Bowenpally, Himayathnagar, Mehidpatnam, Punjagutta, Secundrabad</td></tr>
+            <tr class="city-row"><td>Pune</td><td>PMC</td><td>Shivajinagar</td></tr>
+            <tr><td></td><td>PCMC</td><td>Pimpri Chinchwad</td></tr>
+            <tr class="city-row"><td>Vijayawada</td><td>Vijayawada</td><td>Patamatta, SN Puram</td></tr>
+            <tr class="city-row"><td>Guntur</td><td>Guntur</td><td>Guntur</td></tr>
+            <tr class="city-row"><td>Warangal</td><td>Warangal</td><td>Warangal</td></tr>
+            <tr class="city-row"><td>Karimnagar</td><td>Karimnagar</td><td>Karimnagar</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="expansion-card">
+        <h4>Expansion Pipeline</h4>
+        <div class="info-note">Federal Bank onboarding conversations initiated for AP &amp; TS expansion.</div>
+        <div class="pipeline-state">Andhra Pradesh</div>
+        <div class="pipeline-list">
+          <span class="pipeline-city">Rajamundry</span>
+          <span class="pipeline-city">Nellore</span>
+          <span class="pipeline-city">Kurnool</span>
+        </div>
+        <div class="pipeline-state">Telangana</div>
+        <div class="pipeline-list">
+          <span class="pipeline-city">Sangareddy</span>
+          <span class="pipeline-city">Mahabubnagar</span>
+          <span class="pipeline-city">Nizamabad</span>
+          <span class="pipeline-city">Siddipet</span>
+          <span class="pipeline-city">Khammam</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="footer"><strong>ORO</strong> &nbsp;|&nbsp; Business Update &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp; Confidential &nbsp;|&nbsp; Archived Report</div>
+
+<!-- SECTION 6: AUDIT -->
+<div class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-icon">🔍</span>
+      <span class="section-num">06</span>
+      <h2 class="section-title">Audit</h2>
+    </div>
+    <div class="audit-grid">
+      <div class="audit-card">
+        <h4>Process Audits -- April 2026</h4>
+        <table class="audit-table">
+          <thead><tr><th>Audit Type</th><th>Audits Conducted</th><th>Successful (Zero Errors)</th><th>Success Rate</th></tr></thead>
+          <tbody>
+            <tr><td>Kit Bag Adherence</td><td>190</td><td>172</td><td><span class="pill green">90.53%</span></td></tr>
+            <tr><td>Fresh Loan</td><td>101</td><td>95</td><td><span class="pill green">94.06%</span></td></tr>
+            <tr><td>Takeover</td><td>64</td><td>58</td><td><span class="pill green">90.63%</span></td></tr>
+            <tr><td>Part Release</td><td>9</td><td>8</td><td><span class="pill green">88.89%</span></td></tr>
+            <tr><td>Release</td><td>74</td><td>71</td><td><span class="pill green">95.95%</span></td></tr>
+          </tbody>
+          <tfoot><tr><td>Process Total</td><td>248</td><td>232</td><td>93.55%</td></tr></tfoot>
+        </table>
+      </div>
+      <div class="audit-card">
+        <h4>Gold Audits -- April 2026</h4>
+        <table class="audit-table">
+          <thead><tr><th>Type</th><th>Packets Audited</th><th>Major Deviations</th><th>Soft Recovery</th></tr></thead>
+          <tbody>
+            <tr><td>Oro Gold Audit</td><td>170</td><td>0</td><td>0</td></tr>
+            <tr><td>TCPL Gold Audit</td><td>17</td><td>0</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="archive-footer">
+  <div class="container">
+    <span class="archive-footer-text">Archive -- April 2026 Monthly Report</span>
+    <a href="../index.html">&#8592; Back to Latest Report</a>
+  </div>
+</div>
 
 <script>
 Chart.register(ChartDataLabels);
-Chart.defaults.font.family = "'DM Sans', sans-serif";
-Chart.defaults.plugins.datalabels.display = false;
-const GOLD='#FFBE47',GOLD_DK='#C8920A';
-const W_COLORS=['#BDBDBD','#4A5568',GOLD,GOLD_DK,'#2D6A4F'];
-const M_COLORS=['#BDBDBD','#4A5568',GOLD,GOLD_DK];
+const MONTHS = ['Jan-26','Feb-26','Mar-26','Apr-26'];
+const BAR_COLORS = ['#8C8C8E','#8B6508','#D4A843','#E07B00'];
 
-new Chart(document.getElementById('cWoWVol'),{
-  type:'bar',
-  data:{labels:['W14','W15','W16','W17','W18'],datasets:[{data:[243,428,481,385,390],backgroundColor:W_COLORS,borderRadius:5}]},
-  options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:28}},scales:{y:{beginAtZero:true,grid:{color:'#EEEBE6'}},x:{grid:{display:false}}},plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',font:{weight:'700',size:11},color:'#1A1F36'}}}
+new Chart(document.getElementById('momVolApr'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [{ data: [2249, 2752, 2279, 1767], backgroundColor: BAR_COLORS, borderRadius: 4 }]
+  },
+  options: {
+    plugins: { legend:{display:false}, datalabels:{anchor:'end',align:'top',font:{size:11,weight:'600'},color:'#1C1C1E'} },
+    scales: { y:{beginAtZero:true,grid:{color:'#E8E8E6'}}, x:{grid:{display:false}} },
+    responsive: true
+  }
 });
 
-new Chart(document.getElementById('cMoMAUM'),{
-  type:'line',
-  data:{labels:['Jan','Feb','Mar','Apr'],datasets:[{data:[898.5,1025.2,1138.4,1182.6],borderColor:GOLD,backgroundColor:'rgba(255,190,71,0.1)',borderWidth:3,pointBackgroundColor:GOLD,pointRadius:6,fill:true,tension:0.3}]},
-  options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:28}},scales:{y:{grid:{color:'#EEEBE6'},ticks:{callback:v=>'Rs '+v}},x:{grid:{display:false}}},plugins:{legend:{display:false},datalabels:{display:true,align:'top',formatter:v=>'Rs '+v,font:{weight:'700',size:11},color:GOLD_DK}}}
+new Chart(document.getElementById('momValApr'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [{ data: [125.8, 171.6, 128.5, 94.5], backgroundColor: BAR_COLORS, borderRadius: 4 }]
+  },
+  options: {
+    plugins: { legend:{display:false}, datalabels:{anchor:'end',align:'top',font:{size:11,weight:'600'},color:'#1C1C1E',formatter:v=>'₹'+v} },
+    scales: { y:{beginAtZero:true,grid:{color:'#E8E8E6'}}, x:{grid:{display:false}} },
+    responsive: true
+  }
+});
+
+new Chart(document.getElementById('loanMixApr'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [
+      { label: 'Fresh', data: [41.2, 62.7, 64.1, 51.2], backgroundColor: '#1A3F6F', borderRadius: 2 },
+      { label: 'Takeover', data: [82.2, 106.2, 62.0, 42.5], backgroundColor: '#2D6A4F', borderRadius: 2 },
+      { label: 'DC', data: [2.4, 2.7, 2.4, 0.8], backgroundColor: '#D4A843', borderRadius: 2 }
+    ]
+  },
+  options: {
+    plugins: { legend:{position:'bottom',labels:{boxWidth:12,font:{size:11}}}, datalabels:{display:false} },
+    scales: { x:{stacked:true,grid:{display:false}}, y:{stacked:true,grid:{color:'#E8E8E6'}} },
+    responsive: true
+  }
+});
+
+new Chart(document.getElementById('aumApr'), {
+  type: 'line',
+  data: {
+    labels: MONTHS,
+    datasets: [{
+      data: [89852.9, 102515.9, 113775.2, 118248.5],
+      borderColor: '#D4A843',
+      backgroundColor: 'rgba(212,168,67,0.08)',
+      borderWidth: 2,
+      pointBackgroundColor: '#D4A843',
+      pointRadius: 5,
+      fill: true,
+      tension: 0.3
+    }]
+  },
+  options: {
+    plugins: { legend:{display:false}, datalabels:{anchor:'top',align:'top',font:{size:10,weight:'600'},color:'#8B6508',formatter:v=>'₹'+(v/100).toFixed(0)+'Cr'} },
+    scales: { y:{grid:{color:'#E8E8E6'},ticks:{callback:v=>'₹'+(v/100).toFixed(0)+'Cr'}}, x:{grid:{display:false}} },
+    responsive: true
+  }
+});
+
+new Chart(document.getElementById('cityApr'), {
+  type: 'bar',
+  data: {
+    labels: ['Chennai','Bengaluru','Hyderabad','Pune','Vijayawada','Guntur','Warangal','Karimnagar'],
+    datasets: [
+      { label: 'Jan', data: [293,422,911,312,153,41,49,68], backgroundColor: '#8C8C8E', borderRadius: 2 },
+      { label: 'Feb', data: [400,520,1162,345,127,40,77,86], backgroundColor: '#8B6508', borderRadius: 2 },
+      { label: 'Mar', data: [401,444,844,318,96,39,73,66], backgroundColor: '#D4A843', borderRadius: 2 },
+      { label: 'Apr', data: [351,355,605,289,69,11,36,52], backgroundColor: '#E07B00', borderRadius: 2 }
+    ]
+  },
+  options: {
+    plugins: { legend:{position:'bottom',labels:{boxWidth:12,font:{size:11}}}, datalabels:{display:false} },
+    scales: { x:{grid:{display:false}}, y:{grid:{color:'#E8E8E6'},beginAtZero:true} },
+    responsive: true
+  }
 });
 </script>
 </body>
