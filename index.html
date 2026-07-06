@@ -516,8 +516,73 @@ body.has-nav{padding-top:48px;}
 <div class="section">
 <div id="s4" class="section-head"><div class="section-num">4</div><div class="section-title">Support</div></div>
 <div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">MTD Performance</div><div class="sub-label-note">| June 1&ndash;27, 2026</div></div>
-<div class="note-box" style="background:var(--amber-bg);border-color:#f5cfa0;border-left:4px solid var(--amber);">
-  <strong>Data pending:</strong> Support performance data (call volumes, resolution rates, contact reasons) is sourced from <em>oro_cx_review_june_22-27_3.html</em>. Please add the MTD summary here &mdash; focusing on total calls handled, broad support performance, top contact reasons, and resolution rates.
+
+<div class="bot-tile-row">
+  <div class="bot-tile"><div class="bot-tile-name">Total Tickets (MTD)</div><div class="bot-tile-val">5,375</div><div class="bot-tile-sub">June 1&ndash;27, 2026</div></div>
+  <div class="bot-tile"><div class="bot-tile-name">Unique Customers</div><div class="bot-tile-val">3,727</div><div class="bot-tile-sub">Distinct customers contacted</div></div>
+  <div class="bot-tile"><div class="bot-tile-name">Resolved Rate</div><div class="bot-tile-val">50.5%</div><div class="bot-tile-sub">MTD resolution</div></div>
+  <div class="bot-tile"><div class="bot-tile-name">Unreachable Rate</div><div class="bot-tile-val">28.1%</div><div class="bot-tile-sub">Could not connect after attempts</div></div>
+  <div class="bot-tile"><div class="bot-tile-name">Avg TAT</div><div class="bot-tile-val">2.34h</div><div class="bot-tile-sub">MTD turnaround time</div></div>
+</div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Period-wise Trend</div><div class="sub-label-note">| June 2026</div></div>
+<div class="tbl-wrap"><table>
+  <thead><tr>
+    <th>Period</th>
+    <th class="r">Tickets</th>
+    <th class="c">Live Pickup</th>
+    <th class="c">Eventually Spoke</th>
+    <th class="c">Resolved</th>
+    <th class="c">Unreachable</th>
+    <th class="r">First Attempt</th>
+    <th class="r">TAT</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>June 1&ndash;13</td><td class="r">2,891</td><td class="c"><span class="pill a">46.8%</span></td><td class="c"><span class="pill g">87.9%</span></td><td class="c"><span class="pill a">50.3%</span></td><td class="c"><span class="pill a">28.4%</span></td><td class="r">33 min</td><td class="r">1.77h</td></tr>
+    <tr><td>June 14&ndash;21</td><td class="r">1,346</td><td class="c"><span class="pill r">42.8%</span></td><td class="c"><span class="pill g">86.7%</span></td><td class="c"><span class="pill a">49.6%</span></td><td class="c"><span class="pill a">28.2%</span></td><td class="r">49 min</td><td class="r">1.77h</td></tr>
+    <tr><td>June 22&ndash;27</td><td class="r">1,138</td><td class="c"><span class="pill g">52.7%</span></td><td class="c"><span class="pill g">89.5%</span></td><td class="c"><span class="pill a">47.0%</span></td><td class="c"><span class="pill g">24.5%</span></td><td class="r">19 min</td><td class="r">1.68h</td></tr>
+    <tr class="tot"><td>MTD Total</td><td class="r">5,375</td><td class="c">&mdash;</td><td class="c">&mdash;</td><td class="c">50.5%</td><td class="c">28.1%</td><td class="r">&mdash;</td><td class="r">2.34h</td></tr>
+  </tbody>
+</table></div>
+
+<div class="sub-label"><div class="sub-label-bar"></div><div class="sub-label-text">Contact Reasons</div><div class="sub-label-note">| June 22&ndash;27 (most recent period)</div></div>
+<div class="tbl-wrap"><table>
+  <thead><tr>
+    <th>Contact Reason</th>
+    <th class="r">Tickets</th>
+    <th class="c">Resolved %</th>
+    <th class="c">Unreachable %</th>
+    <th class="r">TAT</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>General Enquiry</td><td class="r">285</td><td class="c"><span class="pill g">88.1%</span></td><td class="c"><span class="pill x">&mdash;</span></td><td class="r">0.43h</td></tr>
+    <tr><td>Others</td><td class="r">277</td><td class="c"><span class="pill r">9.4%</span></td><td class="c"><span class="pill r">71.5%</span></td><td class="r">1.52h</td></tr>
+    <tr><td>New Loan Request</td><td class="r">118</td><td class="c"><span class="pill g">99.2%</span></td><td class="c"><span class="pill x">&mdash;</span></td><td class="r">0.05h</td></tr>
+    <tr><td>Renewal</td><td class="r">114</td><td class="c"><span class="pill g">86.8%</span></td><td class="c"><span class="pill x">&mdash;</span></td><td class="r">0.58h</td></tr>
+    <tr><td>Closure</td><td class="r">20</td><td class="c"><span class="pill g">85.0%</span></td><td class="c"><span class="pill x">&mdash;</span></td><td class="r">17.66h</td></tr>
+    <tr><td>Part Release</td><td class="r">19</td><td class="c"><span class="pill a">57.9%</span></td><td class="c"><span class="pill x">&mdash;</span></td><td class="r">26.14h</td></tr>
+  </tbody>
+</table></div>
+
+<div class="hl-grid">
+  <div class="hl-box good">
+    <div class="hl-title">&#10003; What Worked Well &mdash; Support</div>
+    <ul>
+      <li><strong>Live pickup improved in final week:</strong> Jun 22&ndash;27 achieved 52.7% live pickup vs 42.8% in Jun 14&ndash;21 &mdash; a 9.9pp improvement.</li>
+      <li><strong>Eventually spoke rate consistently high:</strong> 86.7&ndash;89.5% across all periods &mdash; callbacks are working effectively.</li>
+      <li><strong>New loan request resolution near-perfect:</strong> 99.2% resolved rate at just 0.05h TAT &mdash; fastest and most reliable category.</li>
+      <li><strong>Final week TAT improved:</strong> 1.68h in Jun 22&ndash;27 vs 1.77h in prior periods &mdash; trending in the right direction.</li>
+    </ul>
+  </div>
+  <div class="hl-box bad">
+    <div class="hl-title">&#9651; Needs Improvement &mdash; Support</div>
+    <ul>
+      <li><strong>Overall resolution below target:</strong> 50.5% MTD resolution rate. Nearly half of tickets remain unresolved at close.</li>
+      <li><strong>&ldquo;Others&rdquo; category is a black hole:</strong> 277 tickets, only 9.4% resolved, 71.5% unreachable &mdash; needs categorisation and escalation SOP.</li>
+      <li><strong>Closure &amp; Part Release TAT extremely high:</strong> 17.66h and 26.14h respectively &mdash; likely operational dependencies causing delays.</li>
+      <li><strong>Unreachable at 28.1% MTD:</strong> More than 1 in 4 customers could not be reached despite multiple attempts.</li>
+    </ul>
+  </div>
 </div>
 </div>
 
