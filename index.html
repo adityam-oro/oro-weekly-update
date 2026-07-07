@@ -17,7 +17,13 @@
   --surface:#FAFAF8; --grey:#6B7280; --grey-light:#E5E7EB;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);line-height:1.6;font-size:14px;}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);line-height:1.6;font-size:14px;padding-top:52px;}
+.sticky-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--ink);border-bottom:2px solid var(--gold);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;}
+.sticky-nav-logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--gold);letter-spacing:0.05em;}
+.sticky-nav-links{display:flex;gap:4px;}
+.sticky-nav-links a{font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);text-decoration:none;padding:8px 14px;border-radius:4px;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.15s;}
+.sticky-nav-links a:hover,.sticky-nav-links a.active{color:var(--gold);background:rgba(212,168,67,0.12);}
+@media(max-width:820px){.sticky-nav-links{display:none;}.sticky-nav{padding:0 16px;}}
 
 /* COVER */
 .cover{background:var(--ink);padding:64px 48px 56px;position:relative;overflow:hidden;}
@@ -197,6 +203,18 @@ body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);line-heig
 </style>
 </head>
 <body>
+<nav class="sticky-nav">
+  <div class="sticky-nav-logo">ORO</div>
+  <div class="sticky-nav-links">
+    <a href="#s1">Business</a>
+    <a href="#s2">Initiatives</a>
+    <a href="#s3">Support</a>
+    <a href="#s4">People</a>
+    <a href="#s5">Expansion</a>
+    <a href="#s6">Audit</a>
+  </div>
+</nav>
+
 <!-- COVER -->
 <div class="cover">
   <div class="page">
@@ -240,7 +258,7 @@ body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);line-heig
 <!-- ============================
      SECTION 1: BUSINESS PERFORMANCE
      ============================ -->
-<div class="section">
+<div class="section" id="s1">
   <div class="page">
     <div class="section-label">Section 01</div>
     <div class="section-heading">Business Performance</div>
@@ -741,7 +759,7 @@ body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);line-heig
 <!-- ============================
      SECTION 2: INITIATIVES
      ============================ -->
-<div class="section">
+<div class="section" id="s2">
   <div class="page">
     <div class="section-label">Section 02</div>
     <div class="section-heading">New Initiatives and Pilots</div>
@@ -801,7 +819,7 @@ body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);line-heig
 <!-- ============================
      SECTION 3: SUPPORT
      ============================ -->
-<div class="section">
+<div class="section" id="s3">
   <div class="page">
     <div class="section-label">Section 03</div>
     <div class="section-heading">Support</div>
@@ -888,7 +906,7 @@ body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);line-heig
 <!-- ============================
      SECTION 4: PEOPLE
      ============================ -->
-<div class="section">
+<div class="section" id="s4">
   <div class="page">
     <div class="section-label">Section 04</div>
     <div class="section-heading">People</div>
@@ -920,7 +938,7 @@ body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);line-heig
 <!-- ============================
      SECTION 5: EXPANSION
      ============================ -->
-<div class="section">
+<div class="section" id="s5">
   <div class="page">
     <div class="section-label">Section 05</div>
     <div class="section-heading">Expansion</div>
@@ -991,7 +1009,7 @@ body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);line-heig
 <!-- ============================
      SECTION 6: AUDIT
      ============================ -->
-<div class="section">
+<div class="section" id="s6">
   <div class="page">
     <div class="section-label">Section 06</div>
     <div class="section-heading">Audit</div>
@@ -1296,6 +1314,28 @@ new Chart(G('avgDailyT2Chart'), cityLine(MONTHS,[
   {label:'Warangal',data:avgDaily([77,73,36,29,38],WD),borderColor:'#6B4F82',pointBackgroundColor:'#6B4F82',borderWidth:2,pointRadius:4,fill:false,tension:0.3},
   {label:'Karimnagar',data:avgDaily([86,66,52,55,40],WD),borderColor:'#3D7A5A',pointBackgroundColor:'#3D7A5A',borderWidth:2,pointRadius:4,fill:false,tension:0.3}
 ]));
+</script>
+<script>
+(function(){
+  var links = document.querySelectorAll('.sticky-nav-links a');
+  var sections = [];
+  links.forEach(function(a){
+    var id = a.getAttribute('href').replace('#','');
+    var el = document.getElementById(id);
+    if(el) sections.push({id:id,el:el,a:a});
+  });
+  function onScroll(){
+    var scrollY = window.scrollY + 80;
+    var current = sections[0];
+    sections.forEach(function(s){
+      if(s.el.getBoundingClientRect().top + window.scrollY <= scrollY) current = s;
+    });
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if(current) current.a.classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
 </script>
 </body>
 </html>
